@@ -1,0 +1,116 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12 pl-0 pr-0">
+      <div class="profile-banner">
+        <div class="buttons-holder">
+          <button class="button button-normal">
+            Check progress
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="row profile-navbar">
+    <div class="col-md-8 ml-auto">
+      <div class="profile-tabs">
+        <ul class="tabs-holder">
+          <li class="tab" (click)="switchTab('tab1')">
+            <a [class.selected]="currentTab == 'tab1'">Semester scores</a>
+          </li>
+          <li class="tab" (click)="switchTab('tab2')">
+            <a [class.selected]="currentTab == 'tab2'">Interests</a>
+          </li>
+          <li class="tab" (click)="switchTab('tab3')">
+            <a [class.selected]="currentTab == 'tab3'">Teacher inputs</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row mb-4">
+    <div class="col-md-4 pl-5">
+      <div class="card profile-card pull-up">
+
+        <div class="profile-image mb-3">
+          <img src="assets/icons/student.svg" />
+        </div>
+        <div class="name">
+          <span>Arvind Muthuraman</span>
+        </div>
+        <div class="roll-number">
+          <span>123456789</span>
+        </div>
+        <div class="department">
+          <span>Computer Science & Engineering</span>
+        </div>
+        <div class="email">
+          <span>arvind.muthuraman@ssn.edu.in</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-8">
+      <ng-container *ngIf="currentTab == 'tab1'">
+        <div class="row" *ngFor="let j of [1,2]" [@cardAnimation1]>
+          <div class="col-md-12">
+            <div class="card table-wrapper mt-4">
+              <h4 class="heading">Semester {{j}}</h4>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Subject name</th>
+                    <th>Code</th>
+                    <th>Grade</th>
+
+                  </tr>
+
+                </thead>
+                <tbody>
+                  <tr *ngFor="let i of [1,2,3,4,5]">
+                    <td>
+                      <!-- <img class="profile-image" src="assets/icons/student.svg"> -->
+                      Database management
+                    </td>
+                    <td>487392</td>
+                    <td>A</td>
+
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="currentTab == 'tab2'" [@loopAnimation]="questions.length">
+          <div class="row" *ngFor="let question of questions" [@cardAnimation1]>
+            <div class="col-10 ml-auto mr-auto">
+                <div class="card question-wrapper mt-4">
+                    <h4 class="heading">What is your favourite food?</h4>
+                    <div class="button-holder mt-2 mb-3">
+                      <button class="button button-no mr-3">No</button>
+                      <button class="button button-yes selected" (click)="pushNewQuestion()">Yes</button>
+                    </div>
+                </div>
+                
+            </div>
+          </div>
+
+       
+
+          
+         
+            
+    
+      </ng-container>
+
+      <ng-container *ngIf="currentTab == 'tab3'">
+
+        </ng-container>
+
+    </div>
+  </div>
+</div>

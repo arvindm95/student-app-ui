@@ -1,0 +1,53 @@
+
+<div class="container-fluid">
+    
+    <div class="row profile-navbar">
+      <div class="col-md-8 ml-auto">
+        <div class="profile-tabs">
+          <ul class="tabs-holder">
+            <li class="tab"><a href="#" [routerLink]="['/app/dashboard']">Dashboard</a></li>
+            <li class="tab"><a href="#" class="selected" [routerLink]="['/app/students-list']">Students List</a></li>
+            <li class="tab"><a href="#" [routerLink]="['/app/profile']">Profile</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    
+      <div class="row mb-4">
+       
+    
+        <div class="col-md-12">
+          <div class="card table-wrapper mt-4">
+            <h4 class="heading">Students List</h4>
+            <table class="table">
+              <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Roll number</th>
+                    <th>Department</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                </tr>
+                
+              </thead>
+              <tbody>
+                <tr *ngFor="let i of ['dropout','pg','dropout','pg','nothing']">
+                    <td>
+                      <img class="profile-image" *ngIf="i=='dropout'" src="assets/icons/student-m.svg">
+                      <img class="profile-image" *ngIf="i!='dropout'" src="assets/icons/student-g.svg">
+                      Arvind
+                    </td>
+                    <td>123456789</td>
+                    <td>Computer science</td>
+                    <td>arvind@gmail.com</td>
+                    <td>
+                      <span class="badge status-{{i}}">{{i}}</span>
+                    </td>
+                </tr>  
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
