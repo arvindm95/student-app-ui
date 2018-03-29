@@ -1,0 +1,36 @@
+.card-header {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.card-metrics {
+    padding: 10px;
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.card-row-inside {
+    padding-top: 30px;
+    .col-md-4 {
+        padding-left: 0px !important;
+        padding-right: 30px !important;
+    }
+    .col-md-4:first-child {
+        padding-left: 30px !important;
+    }
+}
+
+.chart-row-inside {
+    padding-top: 30px;
+    .col-md-6 {
+        padding-left: 0px !important;
+        padding-right: 30px !important;
+    }
+    .col-md-6:first-child {
+        padding-left: 30px !important;
+    }
+}
+
+.chart-container {
+    min-height: 350px !important;
+}
