@@ -32,7 +32,7 @@
                 
               </thead>
               <tbody>
-                <tr *ngFor="let student of studentsList; let i = index" (click)="openProfile(student)">
+                <tr *ngFor="let student of studentsListFinal; let i = index" (click)="openProfile(student)">
                     <td >
                       <img class="profile-image" *ngIf="student?.student_gender == 'M'" src="assets/icons/student-m.svg">
                       <img class="profile-image" *ngIf="student?.student_gender == 'F'" src="assets/icons/student-g.svg">
@@ -42,9 +42,11 @@
                     <td>{{student?.student_department}}</td>
                     <td>{{student?.student_email}}</td>
                     <td>
-                      <span class="badge status-dropout" *ngIf="i > 10 && i<= 20">Dropout</span>
+                      <img class="align-center" src="assets/loader-heavy.svg" *ngIf="!student.prediction" height="30" width="30">
+                        <span class="badge status-{{student?.prediction}}" *ngIf="student.prediction">{{student?.prediction}}</span>
+                      <!-- <span class="badge status-dropout" *ngIf="i > 10 && i<= 20">Dropout</span>
                       <span class="badge status-pg" *ngIf="i <= 10">PG</span>
-                      <span class="badge status-nothing" *ngIf="i > 20">Job</span>
+                      <span class="badge status-nothing" *ngIf="i > 20">Job</span> -->
                     </td>
                 </tr>  
               </tbody>
