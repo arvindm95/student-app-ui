@@ -103,7 +103,7 @@
       </ng-container>
 
       <ng-container *ngIf="currentTab == 'tab2'" [@loopAnimation]="questions.length">
-          <p *ngIf="userRole == 'teacher' && !(questions[0].question_answer)">Not available</p>
+          <p class="incomplete_message" *ngIf="userRole == 'teacher' && !(questions[0].question_answer)">Student Analysis Incomplete</p>
           <div *ngIf="!(userRole == 'teacher' && !(questions[0].question_answer))">
             <div class="row" *ngFor="let question of questions" [@cardAnimation1]>
               <div class="col-10 ml-auto mr-auto">
