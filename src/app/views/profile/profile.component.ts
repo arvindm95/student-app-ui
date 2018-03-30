@@ -68,12 +68,16 @@ export class ProfileComponent implements OnInit {
   }
 
   saveTeacherAnswer(answer, question){
-    this.postTeacherAnswer(answer, question.question_id);
+    if(this.lastQuestionTeacherIndex <= 5){
+      this.postTeacherAnswer(answer, question.question_id);
+    }
     question.question_answer = answer;
   }
 
   pushNewTeacherQuestion(answer,question ){
+    if(this.lastQuestionTeacherIndex <= 5){
     this.postTeacherAnswer(answer, question.question_id);
+    }
     question.question_answer = answer;
   }
  
@@ -94,7 +98,10 @@ export class ProfileComponent implements OnInit {
     });
   }
   saveAnswer(answer, question){
-    this.postStudentAnswer(answer, question.question_id);
+    if(this.lastQuestionIndex <=5){
+      this.postStudentAnswer(answer, question.question_id);
+    }
+   
     question.question_answer = answer;
   }
 
@@ -114,7 +121,10 @@ export class ProfileComponent implements OnInit {
   }
  
   pushNewQuestion(answer, question){
-    this.postStudentAnswer(answer, question.question_id);
+    if(this.lastQuestionIndex <=5){
+      this.postStudentAnswer(answer, question.question_id);
+    }
+    
     question.question_answer = answer;
     // console.log(this.questions);
  
