@@ -29,6 +29,10 @@ export class ProfileComponent implements OnInit {
   semesterDetails: any;
   studentQuestions: any;
   lastQuestionIndex: any;
+  progressStage1: any;
+  progressStage2: any;
+  progressStage3: any;
+  progressStage4: any;
   constructor(private service: HttpService, private route: ActivatedRoute) {
     
    }
@@ -98,5 +102,29 @@ export class ProfileComponent implements OnInit {
       });
     }
 
+    showPrediction(){
+      this.progressStage1 = true;
+      this.progressStage2 = false;
+      this.progressStage3 = false;
+      this.progressStage4 = false;
+      setTimeout(() => {
+        this.progressStage1 = false;
+        this.progressStage2 = true;
+        this.progressStage3 = false;
+        this.progressStage4 = false;
+      }, 2000);
+      setTimeout(() => {
+        this.progressStage1 = false;
+        this.progressStage2 = false;
+        this.progressStage3 = true;
+        this.progressStage4 = false;
+      }, 4000);
+      setTimeout(() => {
+        this.progressStage1 = false;
+        this.progressStage2 = false;
+        this.progressStage3 = false;
+        this.progressStage4 = true;
+      }, 6000);
+    }
 
 }

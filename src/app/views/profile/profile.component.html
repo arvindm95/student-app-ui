@@ -3,7 +3,7 @@
     <div class="col-md-12 pl-0 pr-0">
       <div class="profile-banner">
         <div class="buttons-holder">
-          <button class="button button-normal" data-toggle="modal" data-target="#largeModal">
+          <button class="button button-normal" data-toggle="modal" data-target="#largeModal" (click)="showPrediction()">
             Check progress
           </button>
         </div>
@@ -144,8 +144,11 @@
       </div>
       <div class="modal-body">
         <!-- <h3>Modal Body</h3> -->
-        <span class="mb-3">Analyzing marks</span>
-        <img src="assets/loader-heavy.svg"  height="100" width="auto"/>
+        <span class="mb-3" *ngIf="progressStage1">Analyzing marks</span>
+        <span class="mb-3" *ngIf="progressStage2">Analyzing student interests</span>
+        <span class="mb-3" *ngIf="progressStage3">Analyzing teachers' feedback</span>
+        <span class="mb-3" *ngIf="progressStage4">Analyzing teachers' feedback</span>
+        <img *ngIf="!progressStage4" src="assets/loader-heavy.svg"  height="100" width="auto"/>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

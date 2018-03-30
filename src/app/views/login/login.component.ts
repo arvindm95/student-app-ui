@@ -33,11 +33,11 @@ export class LoginComponent implements OnInit {
       console.log(data);
     //  this.profileDetails = data;
     if(data['role_name'] == 'student'){
-      this.loginTo('student',1);
+      this.loginTo('student',data['user_id']);
     }else if(data['role_name'] == 'teacher'){
-      this.loginTo('teacher',1);
+      this.loginTo('teacher',data['user_id']);
     }else if(data['role_name'] == 'institution'){
-      this.loginTo('institution',1);
+      this.loginTo('institution',data['user_id']);
     }
       
     }).catch((error)=>{
