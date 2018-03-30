@@ -33,6 +33,7 @@ export class ProfileComponent implements OnInit {
   progressStage2: any;
   progressStage3: any;
   progressStage4: any;
+  studentId:any;
   constructor(private service: HttpService, private route: ActivatedRoute) {
     
    }
@@ -41,7 +42,7 @@ export class ProfileComponent implements OnInit {
     this.currentTab = 'tab1';
     
     this.route.params.subscribe((params) => {
-      
+      this.studentId = params['id'];
       this.getStudentDetails(params['id']);
       this.getSemesterDetails(params['id']);
       this.getStudentQuestions(params['id']);
@@ -52,8 +53,31 @@ export class ProfileComponent implements OnInit {
     this.currentTab = tab;
   }
 
-  pushNewQuestion(){
+  saveAnswer(answer, question){
+    this.postStudentAnswer(answer, question.question_id);
+    question.question_answer = answer;
+  }
+
+  postStudentAnswer(answer,questionId ){
     this.questions.push(this.studentQuestions[++this.lastQuestionIndex]);
+    let request = {
+      student_id:this.studentId,
+      question_id:questionId,
+      question_answer:answer
+    };
+    console.log(request);
+    this.service.post('/student/questions/save',JSON.stringify(request)).then((data)=>{
+      console.log(data);
+    }).catch((error)=>{
+
+    });
+  }
+ 
+  pushNewQuestion(answer, question){
+    this.postStudentAnswer(answer, question.question_id;
+    question.question_answer = answer;
+    // console.log(this.questions);
+ 
     /* this.questions.push({
       question:'Did you choose this course with passion?',
       answer:'yes'
