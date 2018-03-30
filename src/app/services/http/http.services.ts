@@ -4,12 +4,12 @@ import { Injectable, Component } from '@angular/core';
 @Injectable()
 export class HttpService {
 
-    apiUrl = 'http://localhost:3000'
+    apiUrl = 'http://192.168.43.172:5000'
 
     constructor(private http: HttpClient) { }
 
     public get(path: string) {
-        return this.http.get('http://demo1410024.mockable.io/sample', { headers: this.getHeaders() }).toPromise();
+        return this.http.get(this.apiUrl + path, { headers: this.getHeaders() }).toPromise();
     }
 
     public post(path: string, body: string) {

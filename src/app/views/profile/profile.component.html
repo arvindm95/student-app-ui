@@ -3,7 +3,7 @@
     <div class="col-md-12 pl-0 pr-0">
       <div class="profile-banner">
         <div class="buttons-holder">
-          <button class="button button-normal">
+          <button class="button button-normal" data-toggle="modal" data-target="#largeModal">
             Check progress
           </button>
         </div>
@@ -11,6 +11,14 @@
       </div>
     </div>
   </div>
+  <ng-container *ngIf="!isLoaded">
+    <div class="loader">
+      <img src="assets/loader-heavy.svg" height="70" width="auto"/>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="isLoaded">
+
+  
   <div class="row profile-navbar">
     <div class="col-md-8 ml-auto">
       <div class="profile-tabs">
@@ -32,50 +40,59 @@
 
   <div class="row mb-4">
     <div class="col-md-4 pl-5">
-      <div class="card profile-card pull-up">
+      <div class="card profile-card pull-up" [@cardAnimation1]="isLoaded">
 
         <div class="profile-image mb-3">
           <img src="assets/icons/student.svg" />
         </div>
         <div class="name">
-          <span>Arvind Muthuraman</span>
+          <span>{{profileDetails?.student_first_name}} {{profileDetails?.student_last_name}}</span>
         </div>
         <div class="roll-number">
-          <span>123456789</span>
+          <span>{{profileDetails?.student_regno}}</span>
         </div>
         <div class="department">
-          <span>Computer Science & Engineering</span>
+          <span>{{profileDetails?.student_department}}</span>
         </div>
         <div class="email">
-          <span>arvind.muthuraman@ssn.edu.in</span>
+          <span>{{profileDetails?.student_email}}</span>
         </div>
       </div>
     </div>
 
     <div class="col-md-8">
       <ng-container *ngIf="currentTab == 'tab1'">
-        <div class="row" *ngFor="let j of [1,2]" [@cardAnimation1]>
+        <div class="row" *ngFor="let semester of semesterDetails" [@cardAnimation3]>
           <div class="col-md-12">
             <div class="card table-wrapper mt-4">
-              <h4 class="heading">Semester {{j}}</h4>
+              <h4 class="heading">Semester {{semester?.semester}}</h4>
               <table class="table">
                 <thead>
                   <tr>
                     <th>Subject name</th>
                     <th>Code</th>
-                    <th>Grade</th>
+                    <th>Marks</th>
 
                   </tr>
 
                 </thead>
                 <tbody>
-                  <tr *ngFor="let i of [1,2,3,4,5]">
+                  <tr *ngFor="let mark of semester?.semester_details">
                     <td>
                       <!-- <img class="profile-image" src="assets/icons/student.svg"> -->
-                      Database management
+                     <!--  {{mark?.subject_name}} -->
+                      <span *ngIf="mark?.subject_name=='dbms'">Database Management Systems</span>
+                      <span *ngIf="mark?.subject_name=='os'">Operating Systems</span>
+                      <span *ngIf="mark?.subject_name=='algo'">Algorithms</span>
+                      <span *ngIf="mark?.subject_name=='oops'">Object Oriented Programming</span>
+
+                      <span *ngIf="mark?.subject_name=='data structures'">Data Structures</span>
+                      <span *ngIf="mark?.subject_name=='data mining'">Data Mining</span>
+                      <span *ngIf="mark?.subject_name=='networks'">Networking systems</span>
+                      <span *ngIf="mark?.subject_name=='microprocessors'">Microprocessors</span>
                     </td>
-                    <td>487392</td>
-                    <td>A</td>
+                    <td>{{mark?.subject_code}}</td>
+                    <td>{{mark?.subject_marks}}</td>
 
                   </tr>
                 </tbody>
@@ -89,7 +106,7 @@
           <div class="row" *ngFor="let question of questions" [@cardAnimation1]>
             <div class="col-10 ml-auto mr-auto">
                 <div class="card question-wrapper mt-4">
-                    <h4 class="heading">What is your favourite food?</h4>
+                    <h4 class="heading">Does the idea of big data and algorithms thrive you?</h4>
                     <div class="button-holder mt-2 mb-3">
                       <button class="button button-no mr-3">No</button>
                       <button class="button button-yes selected" (click)="pushNewQuestion()">Yes</button>
@@ -113,4 +130,28 @@
 
     </div>
   </div>
+</ng-container>
 </div>
+
+<div class="modal fade" id="largeModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Analyzing your strengths</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- <h3>Modal Body</h3> -->
+        <span class="mb-3">Analyzing marks</span>
+        <img src="assets/loader-heavy.svg"  height="100" width="auto"/>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+

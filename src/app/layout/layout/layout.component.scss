@@ -35,3 +35,9 @@ $navbar-height: 70px;
     font-weight: 500;
     color: #565859;
 }
+.dropdown-menu{
+    right: -10px !important;
+    left: unset;
+    margin-top: 20px;
+    cursor: pointer;
+}

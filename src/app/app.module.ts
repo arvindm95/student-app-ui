@@ -16,7 +16,7 @@ import { DashboardChartComponent } from './components/dashboard-chart/dashboard-
 import { NotificationsService } from 'angular2-notifications';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { HttpService } from './services/http/http.services';
-
+import { FormsModule } from '@angular/forms';
 const appRoutes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
@@ -25,8 +25,9 @@ const appRoutes: Routes = [
       [
         { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
         { path: 'dashboard', component: DashboardComponent },
-        { path: 'profile', component: ProfileComponent },
-        { path: 'students-list', component: StudentsListComponent },
+    //    { path: 'profile', component: ProfileComponent },
+        { path: 'profile/:role/:id', component: ProfileComponent },
+        { path: 'students-list/:role/:id', component: StudentsListComponent },
       ]
   },
   { path: '**', redirectTo: 'login', pathMatch: 'full' }
@@ -44,6 +45,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     HttpClientModule,
+    FormsModule,
     BrowserModule,
     ChartModule,
     BrowserAnimationsModule,
