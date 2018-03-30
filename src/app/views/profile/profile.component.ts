@@ -70,7 +70,6 @@ export class ProfileComponent implements OnInit {
   }
  
   pushNewQuestion(answer, question){
-    this.questions.push(this.studentQuestions[++this.lastQuestionIndex]);
     this.postStudentAnswer(answer, question.question_id;
     question.question_answer = answer;
     // console.log(this.questions);
