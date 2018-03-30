@@ -43,6 +43,7 @@ export class ProfileComponent implements OnInit {
   progressStage4: any;
   teacherId:any;
   studentId:any;
+  userRole:any;
   constructor(private service: HttpService, private route: ActivatedRoute) {
     
    }
