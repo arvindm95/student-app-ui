@@ -96,3 +96,39 @@
         font-size: 30px;
     }
 }
+.button:disabled{
+    &:hover{
+        background-color:transparent !important; 
+    }
+}
+
+.button-no:disabled{
+    &:hover{
+        color:#df5d5d !important; 
+    }
+    &.selected{
+        &:hover{
+            background-color:#df5d5d !important;
+            color:white !important;
+        }
+    }
+}
+
+.button-yes:disabled{
+    &:hover{
+        color:#31c3b2 !important; 
+    }
+    &.selected{
+        &:hover{
+            background-color:#31c3b2 !important;
+            color:white !important;
+        }
+    }
+}
+
+.incomplete_message{
+    color: #b9b9b9 !important;
+    font-size: 20px;
+    margin-top: 4rem;
+    padding-left: 7rem;
+}
