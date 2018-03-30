@@ -25,14 +25,23 @@ export class ProfileComponent implements OnInit {
       answer:'yes'
     } */
   ];
+  questions_teacher: any = [
+    /* {
+      question:'Did you choose this course with passion?',
+      answer:'yes'
+    } */
+  ];
   profileDetails: any;
   semesterDetails: any;
   studentQuestions: any;
+  teacherQuestions: any;
   lastQuestionIndex: any;
+  lastQuestionTeacherIndex: any;
   progressStage1: any;
   progressStage2: any;
   progressStage3: any;
   progressStage4: any;
+  teacherId:any;
   studentId:any;
   constructor(private service: HttpService, private route: ActivatedRoute) {
     
@@ -43,9 +52,12 @@ export class ProfileComponent implements OnInit {
     
     this.route.params.subscribe((params) => {
       this.studentId = params['id'];
+      this.teacherId = params['teacherId'];
+      this.userRole = params['role'];
       this.getStudentDetails(params['id']);
       this.getSemesterDetails(params['id']);
       this.getStudentQuestions(params['id']);
+      this.getTeacherQuestions(params['id']);
     });
   }
 
@@ -118,6 +130,28 @@ export class ProfileComponent implements OnInit {
          }else{
           this.questions.push(question);
           this.lastQuestionIndex = i;
+          break;
+         }
+       };
+      }).catch((error)=>{
+
+      });
+    }
+
+    getTeacherQuestions(id){
+      this.service.get('/teacher/questions/'+this.teacherId+"?student="+this.studentId).then((data)=>{
+        console.log(data);
+        this.teacherQuestions = data;
+       // this.isLoaded = true;
+      
+       // for(let question of this.studentQuestions){
+        for(let i = 0; i < this.teacherQuestions.length;i++){
+        let question = this.teacherQuestions[i];
+         if(question.question_answer != null){
+          this.questions_teacher.push(question);
+         }else{
+          this.questions_teacher.push(question);
+          this.lastQuestionTeacherIndex = i;
           break;
          }
        };

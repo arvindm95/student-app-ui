@@ -28,6 +28,7 @@ const appRoutes: Routes = [
     //    { path: 'profile', component: ProfileComponent },
         { path: 'profile/:role/:id', component: ProfileComponent },
         { path: 'students-list/:role/:id', component: StudentsListComponent },
+        { path: 'profile/:role/:id/:teacherId', component: ProfileComponent },
       ]
   },
   { path: '**', redirectTo: 'login', pathMatch: 'full' }

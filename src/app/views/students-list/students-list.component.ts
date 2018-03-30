@@ -22,6 +22,7 @@ export class StudentsListComponent implements OnInit {
   studentsList: any =[];
   role: any;
   studentsListFinal: any;
+  teacherId: any;
   constructor(private service: HttpService, private route: ActivatedRoute,private router: Router) { 
 
   }
@@ -29,6 +30,7 @@ export class StudentsListComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((params) => {
       this.role = params['role'];
+      this.teacherId = params['id'];
       this.getAllStudents();
     });
   }
@@ -48,7 +50,7 @@ export class StudentsListComponent implements OnInit {
   }
   openProfile(student){
    // [routerLink] = "['/app/profile', {'role':role,'id': student.student_id}]"
-    this.router.navigate(['app/profile', this.role, student.student_id]);
+    this.router.navigate(['app/profile', this.role, student.student_id, this.teacherId]);
   }
   calculatePrediction(studentsListFinal){
     console.log('called 1');
