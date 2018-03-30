@@ -28,15 +28,52 @@
     <div class="row chart-row-inside">
       <div class="col col-12 col-md-6">
         <div class="card chart-container">
-          <div class="card-header">Chart 1</div>
+          <div class="card-header">
+            <span class="text">
+               Academic Progress chart
+            </span>
+          </div>
           <dashboard-chart></dashboard-chart>
         </div>
       </div>
       <div class="col col-12 col-md-6">
-        <div class="card chart-container">
+        <!-- <div class="card chart-container">
           <div class="card-header">Chart 2</div>
-        </div>
-      </div>
+           -->
+          <div class="card table-wrapper">
+              <h4 class="heading">Students Requiring Attention</h4>
+              <table class="table">
+                <thead>
+                  <tr>
+                      <th>Name</th>
+                      <th>Roll number</th>
+                      <th>Department</th>
+                      <th>Status</th>
+                  </tr>
+                  
+                </thead>
+                <tbody>
+                  <tr class="cursor-pointer">
+                      <td >
+                       <!--  <img class="profile-image" *ngIf="student?.student_gender == 'M'" src="assets/icons/student-m.svg"> -->
+                        <img class="profile-image"  src="assets/icons/student-g.svg">
+                        Boring yamini
+                      </td>
+                      <td>3122121064738</td>
+                      <td>CSE</td>
+                     
+                      <td>
+                          <span class="badge status-dropout" >dropout</span>
+                          <!-- <span class="badge status-{{student?.prediction}}" *ngIf="student.prediction">{{student?.prediction}}</span> -->
+               
+                      </td>
+                  </tr>  
+                </tbody>
+              </table>
+            </div>
+
+  <!--       </div>
+      </div> -->
     </div>
   </div>
 </div>

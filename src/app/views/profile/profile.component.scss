@@ -84,3 +84,15 @@
 .subject-name-col{
     width: 550px;
 }
+.predicted-course-text{
+
+}
+.quote{
+    font-style: italic;
+    text-align: center;
+    color: #767676;
+    &::before,&::after{
+        content: '"';
+        font-size: 30px;
+    }
+}
