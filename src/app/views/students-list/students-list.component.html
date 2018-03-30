@@ -32,7 +32,7 @@
                 
               </thead>
               <tbody>
-                <tr *ngFor="let student of studentsListFinal; let i = index" (click)="openProfile(student)">
+                <tr class="cursor-pointer" *ngFor="let student of studentsListFinal; let i = index" (click)="openProfile(student)">
                     <td >
                       <img class="profile-image" *ngIf="student?.student_gender == 'M'" src="assets/icons/student-m.svg">
                       <img class="profile-image" *ngIf="student?.student_gender == 'F'" src="assets/icons/student-g.svg">

@@ -78,7 +78,7 @@
                 </thead>
                 <tbody>
                   <tr *ngFor="let mark of semester?.semester_details">
-                    <td>
+                    <td class="subject-name-col">
                       <!-- <img class="profile-image" src="assets/icons/student.svg"> -->
                      <!--  {{mark?.subject_name}} -->
                       <span *ngIf="mark?.subject_name=='dbms'">Database Management Systems</span>
@@ -106,7 +106,7 @@
           <div class="row" *ngFor="let question of questions" [@cardAnimation1]>
             <div class="col-10 ml-auto mr-auto">
                 <div class="card question-wrapper mt-4">
-                    <h4 class="heading">Does the idea of big data and algorithms thrive you?</h4>
+                    <h4 class="heading">{{question?.question_description}}</h4>
                     <div class="button-holder mt-2 mb-3">
                       <button class="button button-no mr-3">No</button>
                       <button class="button button-yes selected" (click)="pushNewQuestion()">Yes</button>

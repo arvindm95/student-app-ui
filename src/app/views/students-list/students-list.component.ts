@@ -37,7 +37,7 @@ export class StudentsListComponent implements OnInit {
       console.log(data);
       this.studentsList = data;
       let tempArray  = data;
-      this.studentsListFinal = this.studentsList.slice(0,20);
+      this.studentsListFinal = this.studentsList/* .slice(0,20) */;
       
       this.calculatePrediction(this.studentsListFinal);
 
@@ -56,24 +56,33 @@ export class StudentsListComponent implements OnInit {
     studentsListFinal.forEach((student,index) => {
       let toSend = {};
       toSend = `{    
-        "M1": [61.0],
-          "M2": [76.0],
-          "M3": [61.0],
-          "M4": [81.0],
-          "sQ1": [1.0],
-          "sQ2": [1.0],
-          "sQ3": [1.0],
-          "sQ4": [1.0],
+        "M1": [`+student.student_marks[0].subject_marks+`],
+          "M2": [`+student.student_marks[1].subject_marks+`],
+          "M3": [`+student.student_marks[2].subject_marks+`],
+          "M4": [`+student.student_marks[3].subject_marks+`],
+          "sQ1": [0.0],
+          "sQ2": [0.0],
+          "sQ3": [0.0],
+          "sQ4": [0.0],
           "sQ5": [1.0],
           "TQ1": [1.0],
-          "TQ2": [1.0],
-          "TQ3": [1.0],
-          "TQ4": [1.0],
-          "TQ5": [1.0]
+          "TQ2": [0.0],
+          "TQ3": [0.0],
+          "TQ4": [0.0],
+          "TQ5": [0.0]
           }`;
-          console.log('called loop');
-    //  toSend["M1"] = [];
-    //  toSend["M1"].push(student)    
+          
+     /*  toSend["M1"] = [];
+      toSend["M1"].push(student.student_marks[0].subject_marks); 
+      toSend["M2"] = [];
+      toSend["M2"].push(student.student_marks[1].subject_marks); 
+      toSend["M3"] = [];
+      toSend["M3"].push(student.student_marks[2].subject_marks); 
+      toSend["M4"] = [];
+      toSend["M4"].push(student.student_marks[3].subject_marks); 
+       */
+     // toSend["M4"].push(student.student_marks[3].subject_marks); 
+      console.log('called loop',student);
       this.predictCall(student, toSend);
 
     });

@@ -20,13 +20,15 @@ export class ProfileComponent implements OnInit {
   currentTab: any;
   isLoaded: boolean;
   questions: any = [
-    {
+    /* {
       question:'Did you choose this course with passion?',
       answer:'yes'
-    }
+    } */
   ];
   profileDetails: any;
   semesterDetails: any;
+  studentQuestions: any;
+  lastQuestionIndex: any;
   constructor(private service: HttpService, private route: ActivatedRoute) {
     
    }
@@ -38,6 +40,7 @@ export class ProfileComponent implements OnInit {
       
       this.getStudentDetails(params['id']);
       this.getSemesterDetails(params['id']);
+      this.getStudentQuestions(params['id']);
     });
   }
 
@@ -46,10 +49,11 @@ export class ProfileComponent implements OnInit {
   }
 
   pushNewQuestion(){
-    this.questions.push({
+    this.questions.push(this.studentQuestions[++this.lastQuestionIndex]);
+    /* this.questions.push({
       question:'Did you choose this course with passion?',
       answer:'yes'
-    })
+    }) */
   }
 
     getStudentDetails(id){
@@ -67,6 +71,28 @@ export class ProfileComponent implements OnInit {
         console.log(data);
         this.semesterDetails = data;
        // this.isLoaded = true;
+      }).catch((error)=>{
+
+      });
+    }
+
+    getStudentQuestions(id){
+      this.service.get('/student/questions/'+id).then((data)=>{
+        console.log(data);
+        this.studentQuestions = data;
+       // this.isLoaded = true;
+      
+       // for(let question of this.studentQuestions){
+        for(let i = 0; i < this.studentQuestions.length;i++){
+        let question = this.studentQuestions[i];
+         if(question.question_answer != null){
+          this.questions.push(question);
+         }else{
+          this.questions.push(question);
+          this.lastQuestionIndex = i;
+          break;
+         }
+       };
       }).catch((error)=>{
 
       });
