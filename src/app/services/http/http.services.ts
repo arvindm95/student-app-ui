@@ -15,6 +15,9 @@ export class HttpService {
     public post(path: string, body: string) {
         return this.http.post(this.apiUrl + path, body, { headers: this.getHeaders() }).toPromise();
     }
+    public postLocal(path: string, body: string) {
+        return this.http.post(path, body, { headers: this.getHeaders() }).toPromise();
+    }
 
     public put(path: string, body: string) {
         return this.http.put(this.apiUrl + path, body, { headers: this.getHeaders() }).toPromise();
