@@ -43,6 +43,7 @@ export class ProfileComponent implements OnInit {
   progressStage4: any;
   teacherId:any;
   studentId:any;
+  predictedCourse: any;
   userRole:any;
   constructor(private service: HttpService, private route: ActivatedRoute) {
     
@@ -210,6 +211,33 @@ export class ProfileComponent implements OnInit {
         this.progressStage3 = false;
         this.progressStage4 = true;
       }, 6000);
+
+      this.service.get('/student/questions/'+this.studentId).then((data)=>{
+        console.log(data);
+      //  this.studentQuestions = data;
+      let testData = `{
+        "Q1": [`+ (data[0]['question_answer'] == 'yes' ? 1.0 : 0.0)+`],
+        "Q2": [`+ (data[1]['question_answer'] == 'yes' ? 1.0 : 0.0)+`],
+        "Q3": [`+ (data[2]['question_answer'] == 'yes' ? 1.0 : 0.0)+`],
+        "Q4": [`+ (data[3]['question_answer'] == 'yes' ? 1.0 : 0.0)+`],
+        "Q5": [`+ (data[4]['question_answer'] == 'yes' ? 1.0 : 0.0)+`]  
+    }`;
+    this.predictCall(testData);
+    
+      }).catch((error)=>{
+
+      });
+
+    }
+
+    predictCall(toSend){
+      this.service.postLocal('http://localhost:5000/predict', (toSend)).then((data)=>{
+     //     student['prediction'] = data['prediction'].toLowerCase();
+        //  console.log('called 8');
+        this.predictedCourse = data['prediction'];
+        }).catch((error)=>{
+    
+        });
     }
 
 }

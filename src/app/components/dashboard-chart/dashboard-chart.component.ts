@@ -17,17 +17,32 @@ export class DashboardChartComponent implements OnInit {
         this.chart = new Chart({
             chart: {
                 renderTo: 'container2',
-                type: 'column',
+                type: 'line',
                 height: '285'
+            },
+            title:{
+                text:''
             },
             yAxis: {
                 title: {
-                    text: 'axis title',
+                    text: 'Pass percentage',
                     useHTML: true
                 }
             },
+            xAxis: {
+                title: {
+                    text: 'Year',
+                    useHTML: true
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            legend: {
+                enabled: false
+            },
             series: [{
-                data: [23, 45, 12, 89, 123, 12, 5]
+                data: [[2006, 450],[2008, 800],[2010, 600], [2012, 1000], [2014, 1220], [2016,900], [2018, 1450]]
             }]
         });
 
