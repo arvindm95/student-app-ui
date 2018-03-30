@@ -110,8 +110,8 @@
                   <div class="card question-wrapper mt-4">
                       <h4 class="heading">{{question?.question_description}}</h4>
                       <div class="button-holder mt-2 mb-3">
-                        <button class="button button-no mr-3 {{question?.question_answer == 'no' ? 'selected' : 'null'}}" (click)="saveAnswer('no',question)">No</button>
-                        <button class="button button-yes {{question?.question_answer == 'yes' ? 'selected' : 'null'}}" (click)="pushNewQuestion('yes',question)">Yes</button>
+                        <button [disabled]="userRole=='teacher'" class="button button-no mr-3 {{question?.question_answer == 'no' ? 'selected' : 'null'}}" (click)="saveAnswer('no',question)">No</button>
+                        <button [disabled]="userRole=='teacher'" class="button button-yes {{question?.question_answer == 'yes' ? 'selected' : 'null'}}" (click)="pushNewQuestion('yes',question)">Yes</button>
                       </div>
                   </div>
               </div>
