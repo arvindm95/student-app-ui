@@ -125,7 +125,19 @@
       </ng-container>
 
       <ng-container *ngIf="currentTab == 'tab3'">
-
+          <div class="row" *ngFor="let question of questions_teacher" [@cardAnimation1]>
+              <div class="col-10 ml-auto mr-auto">
+                  <div class="card question-wrapper mt-4">
+                      <h4 class="heading">{{question?.question_description}}</h4>
+                      <div class="button-holder mt-2 mb-3">
+                        <button class="button button-no mr-3 {{question?.question_answer == 'no' ? 'selected' : 'null'}}" (click)="saveTeacherAnswer('no',question)">No</button>
+                        <button class="button button-yes {{question?.question_answer == 'yes' ? 'selected' : 'null'}}" (click)="pushNewTeacherQuestion('yes',question)">Yes</button>
+                      </div>
+                  </div>
+                  
+              </div>
+            </div>
+  
         </ng-container>
 
     </div>

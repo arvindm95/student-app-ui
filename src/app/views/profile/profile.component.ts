@@ -65,6 +65,32 @@ export class ProfileComponent implements OnInit {
     this.currentTab = tab;
   }
 
+  saveTeacherAnswer(answer, question){
+    this.postTeacherAnswer(answer, question.question_id);
+    question.question_answer = answer;
+  }
+
+  pushNewTeacherQuestion(answer,question ){
+    this.postTeacherAnswer(answer, question.question_id);
+    question.question_answer = answer;
+  }
+ 
+
+  postTeacherAnswer(answer,questionId ){
+    this.questions_teacher.push(this.teacherQuestions[++this.lastQuestionTeacherIndex]);
+    let request = {
+      teacher_id:this.teacherId,
+      student_id:this.studentId,
+      question_id:questionId,
+      question_answer:answer
+    };
+    console.log(request);
+    this.service.post('/teacher/questions/save',JSON.stringify(request)).then((data)=>{
+      console.log(data);
+    }).catch((error)=>{
+
+    });
+  }
   saveAnswer(answer, question){
     this.postStudentAnswer(answer, question.question_id);
     question.question_answer = answer;
