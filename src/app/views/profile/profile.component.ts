@@ -7,6 +7,7 @@ import {
 } from '../../animation.constants';
 import { ActivatedRoute } from '@angular/router';
 import { HttpService } from '../../services/http/http.services';
+import { NotificationsService } from 'angular2-notifications';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -46,7 +47,7 @@ export class ProfileComponent implements OnInit {
   predictedCourse: any;
   userRole: any;
   predictionDetails: any;
-  constructor(private service: HttpService, private route: ActivatedRoute) {
+  constructor(private service: HttpService, private route: ActivatedRoute, private _notificationsService: NotificationsService) {
 
   }
 
@@ -209,20 +210,30 @@ export class ProfileComponent implements OnInit {
 
 
     this.predictionDetails.push({
-      date : today,
-      status : result
+      date: today,
+      status: result
     });
 
     //console.log(this.predictionDetails);
 
-    localStorage.setItem('prediction',JSON.stringify(this.predictionDetails));
+    localStorage.setItem('prediction', JSON.stringify(this.predictionDetails));
 
   }
   viewHistory() {
-    
+
     let predictionDetails = JSON.parse(localStorage.getItem('prediction'));
     this.predictionDetails = predictionDetails;
 
+  }
+
+  showSuccess() {
+
+    this._notificationsService.success('Thanks!', 'Prophecy will learn from your feedback.');
+  }
+
+  showFailure() {
+
+    this._notificationsService.warn('Sorry!', 'Prophecy will learn from its mistake.');
   }
 
   showPrediction() {
@@ -274,7 +285,7 @@ export class ProfileComponent implements OnInit {
       this.predictedCourse = data['prediction'];
       this.savePrediction(this.predictedCourse);
     }).catch((error) => {
-      //this.savePrediction("dropout");
+      this.savePrediction("dropout");
     });
   }
 
