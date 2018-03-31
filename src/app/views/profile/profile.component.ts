@@ -181,7 +181,11 @@ export class ProfileComponent implements OnInit {
   }
 
   getTeacherQuestions(id) {
-    this.service.get('/teacher/questions/' + this.teacherId + "?student=" + this.studentId).then((data) => {
+    let url = '/teacher/questions/' + 52 + "?student=" + this.studentId;;
+    if (this.teacherId) {
+      url = '/teacher/questions/' + 52 + "?student=" + this.studentId;
+    }
+    this.service.get(url).then((data) => {
       console.log(data);
       this.teacherQuestions = data;
       // this.isLoaded = true;
@@ -283,15 +287,15 @@ export class ProfileComponent implements OnInit {
       //     student['prediction'] = data['prediction'].toLowerCase();
       //  console.log('called 8');
       this.predictedCourse = data['prediction'];
-      if(this.predictedCourse == 'SW'){
+      if (this.predictedCourse == 'SW') {
         this.predictedCourse = 'Software Developer';
-      }else if(this.predictedCourse == 'AI'){
+      } else if (this.predictedCourse == 'AI') {
         this.predictedCourse = 'Artificial Intelligence';
-      }else if(this.predictedCourse == 'Cyber'){
+      } else if (this.predictedCourse == 'Cyber') {
         this.predictedCourse = 'Cyber Security';
       }
-      console.log(this.predictedCourse,'aa');
-      
+      console.log(this.predictedCourse, 'aa');
+
       this.savePrediction(this.predictedCourse);
     }).catch((error) => {
       //this.savePrediction("dropout");
