@@ -203,22 +203,10 @@ export class ProfileComponent implements OnInit {
 
 
   savePrediction(result) {
-    var today = new Date();
+    var today = new Date().toLocaleString();
 
     var result = result;
-    var dd = today.getDate();
-    var mm = today.getMonth()+1; //January is 0!
-    var yyyy = today.getFullYear();
 
-    if(dd<10) {
-        dd = '0'+dd
-    } 
-
-    if(mm<10) {
-        mm = '0'+mm
-    }  
-
-    today = mm + '.' + dd + '.' + yyyy;
 
     this.predictionDetails.push({
       date : today,
@@ -286,7 +274,7 @@ export class ProfileComponent implements OnInit {
       this.predictedCourse = data['prediction'];
       this.savePrediction(this.predictedCourse);
     }).catch((error) => {
-
+      //this.savePrediction("dropout");
     });
   }
 
