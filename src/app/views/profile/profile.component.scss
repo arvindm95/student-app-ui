@@ -168,3 +168,58 @@
 .button-row{
     margin-top: 10px;
 }
+
+.suggestion-card{
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 10px 0;
+    .header{
+        padding: 10px;
+        border-left: 2px solid #df5d5d;
+        font-size: 14px;
+        font-weight: 400;
+    }
+    .suggestion-row{
+        padding: 0px;
+        display: flex;
+        display: flex;
+        align-items: center;
+        padding: 5px 10px;
+        width: 100%;
+        border-bottom: 1px solid #efefef;
+        .progress-bar{
+            width: 40px;
+            height: 40px;
+            background: #fff;
+            border-radius: 50%;
+
+        }
+        .content{
+           // height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-left: 20px;
+        }
+    }
+    .result-row{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 10px 5px;
+        font-size: 13px;
+        text-align: center;
+        h5{
+            &.DropOut{
+                color: #df5d5d;
+            }
+            &.PG{
+                color: #23b76c;
+            }
+            &.Job{
+                color: #30384c;
+            }
+        }
+    }
+}

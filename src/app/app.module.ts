@@ -12,7 +12,7 @@ import { LoginComponent } from './views/login/login.component';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { StudentsListComponent } from './views/students-list/students-list.component';
 import { DashboardChartComponent } from './components/dashboard-chart/dashboard-chart.component';
-
+import { ProgressBarCircleComponent } from './components/progress-bar-circle/progress-bar-circle.component';
 import { NotificationsService } from 'angular2-notifications';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { HttpService } from './services/http/http.services';
@@ -44,7 +44,8 @@ const appRoutes: Routes = [
     LoginComponent,
     DashboardComponent,
     StudentsListComponent,
-    DashboardChartComponent
+    DashboardChartComponent,
+    ProgressBarCircleComponent
   ],
   imports: [
     HttpClientModule,

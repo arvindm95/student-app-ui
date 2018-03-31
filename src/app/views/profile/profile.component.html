@@ -43,24 +43,64 @@
 
         <div class="row mb-4">
             <div class="col-md-4 pl-5">
-                <div class="card profile-card pull-up" [@cardAnimation1]="isLoaded">
+              <div class="row">
+                <div class="col-12">
+                    <div class="card profile-card pull-up" [@cardAnimation1]="isLoaded">
 
-                    <div class="profile-image mb-3">
-                        <img src="assets/icons/student.svg" />
-                    </div>
-                    <div class="name">
-                        <span>{{profileDetails?.student_first_name}} {{profileDetails?.student_last_name}}</span>
-                    </div>
-                    <div class="roll-number">
-                        <span>{{profileDetails?.student_regno}}</span>
-                    </div>
-                    <div class="department">
-                        <span>{{profileDetails?.student_department}}</span>
-                    </div>
-                    <div class="email">
-                        <span>{{profileDetails?.student_email}}</span>
+                        <div class="profile-image mb-3">
+                            <img src="assets/icons/student.svg" />
+                        </div>
+                        <div class="name">
+                            <span>{{profileDetails?.student_first_name}} {{profileDetails?.student_last_name}}</span>
+                        </div>
+                        <div class="roll-number">
+                            <span>{{profileDetails?.student_regno}}</span>
+                        </div>
+                        <div class="department">
+                            <span>{{profileDetails?.student_department}}</span>
+                        </div>
+                        <div class="email">
+                            <span>{{profileDetails?.student_email}}</span>
+                        </div>
                     </div>
                 </div>
+              </div>
+              <div class="row" *ngIf="suggestionResult" [@cardAnimation2]>
+                  <div class="col-12">
+                      <div class="card profile-card suggestion-card mt-3" [@cardAnimation1]="isLoaded">
+                        <h4 class="header">
+                          Student analysis profile
+                        </h4>
+                        <div class="suggestion-row" *ngFor = "let data of suggestions">
+                            <div class="progress-bar">
+                                <okr-progress-bar-circle [setAbandon]="false" [setValue]="data.score" [size]="40"></okr-progress-bar-circle>
+                            </div>
+                            <div class="content">
+                              {{data?.field}}
+                            </div>
+                        </div>
+                        <div class="result-row">
+                          <span></span>
+                            <h5 class="{{suggestionResult}}">{{suggestionResult}}</h5>
+                          <ng-container *ngIf="suggestionResult == 'DropOut'">
+                              Learn about other fields which interests you.<br>
+                              Talk to the necessary faculties in case they can help you understand in a way you like to learn the concepts.
+                          </ng-container>
+                          <ng-container *ngIf="suggestionResult == 'Job'">
+                              Learn certain basic concepts in your technical side like data structures which help you in a long run.
+                          </ng-container>
+                          <ng-container *ngIf="suggestionResult == 'PG'">
+                              We can't choose where we come from but we can choose where we go from there.<br>
+Do not go where the path may lead, go instead where there is no path and leave a trail.
+                          </ng-container>
+                          
+                        </div>
+
+                          
+                      </div>
+                  </div>
+                </div>
+                
             </div>
 
             <div class="col-md-8">

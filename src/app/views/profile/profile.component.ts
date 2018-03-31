@@ -47,6 +47,20 @@ export class ProfileComponent implements OnInit {
   predictedCourse: any;
   userRole: any;
   predictionDetails: any;
+  suggestionResult: any;
+  suggestions: any = [{
+    "field" : "Creativity",
+    "score" : "45"
+  },{
+    "field" : "Coding concepts",
+    "score" : "61"
+  },{
+    "field" : "Participation",
+    "score" : "20"
+  },{
+    "field" : "Communication",
+    "score" : "65"
+  }];
   constructor(private service: HttpService, private route: ActivatedRoute, private _notificationsService: NotificationsService) {
 
   }
@@ -152,6 +166,7 @@ export class ProfileComponent implements OnInit {
     this.service.get('/student/marks/' + id).then((data) => {
       console.log(data);
       this.semesterDetails = data;
+      this.predictOutcomeCall();
       // this.isLoaded = true;
     }).catch((error) => {
 
@@ -296,6 +311,34 @@ export class ProfileComponent implements OnInit {
     }).catch((error) => {
       //this.savePrediction("dropout");
     });
+  }
+
+  predictOutcomeCall(){
+   // let toSend = {};
+   // let student_marks = this.semesterDetails;
+     let toSend = `{    
+          "M1": [`+ this.semesterDetails[0].semester_details[0].subject_marks+`],
+          "M2": [`+ this.semesterDetails[0].semester_details[1].subject_marks+`],
+          "M3": [`+ this.semesterDetails[0].semester_details[2].subject_marks+`],
+          "M4": [`+ this.semesterDetails[0].semester_details[3].subject_marks+`],
+          "sQ1": [0.0],
+          "sQ2": [0.0],
+          "sQ3": [0.0],
+          "sQ4": [0.0],
+          "sQ5": [1.0],
+          "TQ1": [1.0],
+          "TQ2": [0.0],
+          "TQ3": [0.0],
+          "TQ4": [0.0],
+          "TQ5": [0.0]
+          }`;
+    this.service.postLocal('http://localhost:5001/predict', toSend).then((data)=>{
+       
+        console.log('called 8');
+        this.suggestionResult = data['prediction'];
+      }).catch((error)=>{
+  
+      });
   }
 
 }
