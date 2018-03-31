@@ -148,6 +148,29 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  sendMail(predictedCourse) {
+    let name = this.profileDetails.student_first_name;
+    let recipient_email = this.profileDetails.student_email;
+
+    let salute = "Hi " + name + ",\n\n";
+    let content = "Hello how are you?";
+    let signature = "\n\nRegards,\nTeam Prophet AI";
+
+    let message = salute + content + signature;
+
+    let request = {
+      recipient_email: recipient_email,
+      message: message
+    }
+    this.service.post('/mail', request).then((data) => {
+      // this.isLoaded = true;
+      this._notificationsService.success('Success!', 'Analysis report has been sent to your email');
+
+    }).catch((error) => {
+      // this._notificationsService.error('Oops!', 'Could not deliver yo');
+    });
+  }
+
   getSemesterDetails(id) {
     this.service.get('/student/marks/' + id).then((data) => {
       console.log(data);
@@ -295,9 +318,10 @@ export class ProfileComponent implements OnInit {
         this.predictedCourse = 'Cyber Security';
       }
       console.log(this.predictedCourse, 'aa');
-
+      this.sendMail(this.predictedCourse);
       this.savePrediction(this.predictedCourse);
     }).catch((error) => {
+      this.sendMail(this.predictedCourse);
       //this.savePrediction("dropout");
     });
   }
