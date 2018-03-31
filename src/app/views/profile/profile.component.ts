@@ -228,12 +228,12 @@ export class ProfileComponent implements OnInit {
 
   showSuccess() {
 
-    this._notificationsService.success('Thanks!', 'Prophecy will learn from your feedback.');
+    this._notificationsService.success('Thanks!', 'Prophet AI will learn from your feedback.');
   }
 
   showFailure() {
 
-    this._notificationsService.warn('Sorry!', 'Prophecy will learn from its mistake.');
+    this._notificationsService.warn('Sorry!', 'Prophet AI will learn from its mistake.');
   }
 
   showPrediction() {
@@ -283,6 +283,15 @@ export class ProfileComponent implements OnInit {
       //     student['prediction'] = data['prediction'].toLowerCase();
       //  console.log('called 8');
       this.predictedCourse = data['prediction'];
+      if(this.predictedCourse == 'SW'){
+        this.predictedCourse = 'Software Developer';
+      }else if(this.predictedCourse == 'AI'){
+        this.predictedCourse = 'Artificial Intelligence';
+      }else if(this.predictedCourse == 'Cyber'){
+        this.predictedCourse = 'Cyber Security';
+      }
+      console.log(this.predictedCourse,'aa');
+      
       this.savePrediction(this.predictedCourse);
     }).catch((error) => {
       //this.savePrediction("dropout");

@@ -31,7 +31,7 @@ export class DashboardChartComponent implements OnInit {
             },
             xAxis: {
                 title: {
-                    text: 'Year',
+                    text: 'Semester',
                     useHTML: true
                 }
             },
@@ -42,7 +42,7 @@ export class DashboardChartComponent implements OnInit {
                 enabled: false
             },
             series: [{
-                data: [[2006, 450],[2008, 800],[2010, 600], [2012, 1000], [2014, 1220], [2016,900], [2018, 1450]]
+                data: [[1, 50],[2, 80],[3, 60],[4,89],[5,70],[6,90]]
             }]
         });
 
