@@ -162,6 +162,32 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  sendMail(predictedCourse) {
+    let name = this.profileDetails.student_first_name;
+    let recipient_email = this.profileDetails.student_email;
+
+
+    let salute = "Hi " + name + ",\n\n";
+
+    let content = "Hello how are you?";
+
+    let signature = "\n\nRegards,\nTeam Prophet AI";
+
+    let message = salute + content + signature;
+
+    let request = {
+      recipient_email: recipient_email,
+      message: message
+    }
+    this.service.post('/mail', request).then((data) => {
+      // this.isLoaded = true;
+      this._notificationsService.success('Success!', 'Analysis report has been sent to your email');
+
+    }).catch((error) => {
+      // this._notificationsService.error('Oops!', 'Could not deliver yo');
+    });
+  }
+
   getSemesterDetails(id) {
     this.service.get('/student/marks/' + id).then((data) => {
       console.log(data);
@@ -196,7 +222,11 @@ export class ProfileComponent implements OnInit {
   }
 
   getTeacherQuestions(id) {
-    this.service.get('/teacher/questions/' + this.teacherId + "?student=" + this.studentId).then((data) => {
+    let url = '/teacher/questions/' + 52 + "?student=" + this.studentId;;
+    if (this.teacherId) {
+      url = '/teacher/questions/' + 52 + "?student=" + this.studentId;
+    }
+    this.service.get(url).then((data) => {
       console.log(data);
       this.teacherQuestions = data;
       // this.isLoaded = true;
@@ -298,17 +328,18 @@ export class ProfileComponent implements OnInit {
       //     student['prediction'] = data['prediction'].toLowerCase();
       //  console.log('called 8');
       this.predictedCourse = data['prediction'];
-      if(this.predictedCourse == 'SW'){
+      if (this.predictedCourse == 'SW') {
         this.predictedCourse = 'Software Developer';
-      }else if(this.predictedCourse == 'AI'){
+      } else if (this.predictedCourse == 'AI') {
         this.predictedCourse = 'Artificial Intelligence';
-      }else if(this.predictedCourse == 'Cyber'){
+      } else if (this.predictedCourse == 'Cyber') {
         this.predictedCourse = 'Cyber Security';
       }
-      console.log(this.predictedCourse,'aa');
-      
+      console.log(this.predictedCourse, 'aa');
+      this.sendMail(this.predictedCourse);
       this.savePrediction(this.predictedCourse);
     }).catch((error) => {
+      //this.sendMail("dropout");
       //this.savePrediction("dropout");
     });
   }
