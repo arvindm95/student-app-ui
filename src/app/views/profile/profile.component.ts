@@ -405,7 +405,7 @@ Do not go where the path may lead, go instead where there is no path and leave a
   }
   generateValues(){
     let score1, score2, score3, score4;
-    this.studentQuestions[0]['question_answer'] !=null
+   //this.studentQuestions[0]['question_answer'] !=null
     /* this.studentQuestions.forEach(question => {
       if(question['question_answer'] != null){
        score1 = question['question_answer'] == 'yes' ? 1 * 85 : 0;
@@ -416,10 +416,10 @@ Do not go where the path may lead, go instead where there is no path and leave a
        }
       
     }); */
-    score1 = this.studentQuestions[0]['question_answer'] == 'yes' ? 1 * 45 : 0;
-    score2 = this.studentQuestions[1]['question_answer'] == 'yes' ? 1 * 25 : (score1/3 + 10);
-    score3 = this.studentQuestions[2]['question_answer'] == 'yes' ? (1 * 35 + score1 - 28) : 0;
-    score4 = this.studentQuestions[3]['question_answer'] == 'yes' ? (1 * 2 + score3 + score1/2 ): 0;
+    score1 = this.studentQuestions[0]['question_answer'] == 'yes' ? 1 * 65 : 0;
+    score2 = this.studentQuestions[1]['question_answer'] == 'yes' ? 1 * 25 : (score1/2 + 10);
+    score3 = this.studentQuestions[2]['question_answer'] == 'yes' ? (1 * 6 + score1) : 0;
+    score4 = this.studentQuestions[3]['question_answer'] == 'yes' ? ((1 * 2) + score3 ): 0;
     this.suggestions = JSON.parse(`[{
       "field" : "Creativity",
       "score" : "`+score1+`"
