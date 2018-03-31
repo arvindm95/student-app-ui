@@ -285,7 +285,7 @@ export class ProfileComponent implements OnInit {
       this.predictedCourse = data['prediction'];
       this.savePrediction(this.predictedCourse);
     }).catch((error) => {
-      this.savePrediction("dropout");
+      //this.savePrediction("dropout");
     });
   }
 
