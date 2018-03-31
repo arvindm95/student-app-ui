@@ -222,12 +222,13 @@ Do not go where the path may lead, go instead where there is no path and leave a
               There are only two types of companies:those that are hacked, and those that will be
           </ng-container>
           <ng-container *ngIf="predictedCourse == 'Software Developer'">
-              A code that cannot be tested is flawed
+              A code that cannot be developed does not exist
           </ng-container>
         </span>
                 <img *ngIf="!progressStage4" src="assets/loader-heavy.svg" height="100" width="auto" />
             </div>
             <div class="modal-footer">
+                <span class="report" *ngIf="flag">Analysis report with feedbacks has been sent to your email!</span>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
             </div>

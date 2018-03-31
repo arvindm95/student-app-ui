@@ -44,6 +44,7 @@ export class ProfileComponent implements OnInit {
   progressStage4: any;
   teacherId: any;
   studentId: any;
+  flag: any;
   predictedCourse: any;
   userRole: any;
   predictionDetails: any;
@@ -331,6 +332,7 @@ Do not go where the path may lead, go instead where there is no path and leave a
       this.progressStage2 = false;
       this.progressStage3 = false;
       this.progressStage4 = true;
+      this.flag = true;
     }, 6000);
 
     this.service.get('/student/questions/' + this.studentId).then((data) => {
@@ -352,6 +354,7 @@ Do not go where the path may lead, go instead where there is no path and leave a
   }
 
   predictCall(toSend) {
+    this.flag = false;
     this.service.postLocal('http://localhost:5002/predict', (toSend)).then((data) => {
       //     student['prediction'] = data['prediction'].toLowerCase();
       //  console.log('called 8');
@@ -367,6 +370,7 @@ Do not go where the path may lead, go instead where there is no path and leave a
       this.sendMail(this.predictedCourse);
       this.savePrediction(this.predictedCourse);
     }).catch((error) => {
+        this.flag = false;
       //this.sendMail("dropout");
       //this.savePrediction("dropout");
     });
