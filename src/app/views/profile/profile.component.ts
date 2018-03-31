@@ -48,7 +48,7 @@ export class ProfileComponent implements OnInit {
   userRole: any;
   predictionDetails: any;
   suggestionResult: any;
-  suggestions: any = [{
+  suggestions: any/* [{
     "field" : "Creativity",
     "score" : "45"
   },{
@@ -60,7 +60,7 @@ export class ProfileComponent implements OnInit {
   },{
     "field" : "Communication",
     "score" : "65"
-  }];
+  }] */;
   constructor(private service: HttpService, private route: ActivatedRoute, private _notificationsService: NotificationsService) {
 
   }
@@ -216,6 +216,7 @@ export class ProfileComponent implements OnInit {
           break;
         }
       };
+      this.generateValues();
     }).catch((error) => {
 
     });
@@ -371,5 +372,35 @@ export class ProfileComponent implements OnInit {
   
       });
   }
+  generateValues(){
+    let score1, score2, score3, score4;
+    this.studentQuestions[0]['question_answer'] !=null
+    /* this.studentQuestions.forEach(question => {
+      if(question['question_answer'] != null){
+       score1 = question['question_answer'] == 'yes' ? 1 * 85 : 0;
+      }
 
+      if(question['question_answer'] != null){
+        score2 = question['question_answer'] == 'yes' ? 1 * 64 : 0;
+       }
+      
+    }); */
+    score1 = this.studentQuestions[0]['question_answer'] == 'yes' ? 1 * 45 : 0;
+    score2 = this.studentQuestions[1]['question_answer'] == 'yes' ? 1 * 25 : (score1/3 + 10);
+    score3 = this.studentQuestions[2]['question_answer'] == 'yes' ? (1 * 35 + score1 - 28) : 0;
+    score4 = this.studentQuestions[3]['question_answer'] == 'yes' ? (1 * 2 + score3 + score1/2 ): 0;
+    this.suggestions = JSON.parse(`[{
+      "field" : "Creativity",
+      "score" : "`+score1+`"
+    },{
+      "field" : "Coding concepts",
+      "score" : "`+ score3+`"
+    },{
+      "field" : "Participation",
+      "score" : "`+ score2+`"
+    },{
+      "field" : "Communication",
+      "score" : "`+score4+`"
+    }]`);
+  }
 }

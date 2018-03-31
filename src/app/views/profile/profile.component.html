@@ -3,7 +3,7 @@
         <div class="col-md-12 pl-0 pr-0">
             <div class="profile-banner">
                 <div class="buttons-holder">
-                    <button class="button check button-normal" data-toggle="modal" data-target="#largeModal" (click)="showPrediction()">
+                    <button class="button check button-normal" data-toggle="modal" data-target="#largeModal" (click)="showPrediction();generateValues()">
             Analyze
           </button>
                     <button class="button button-normal" data-toggle="modal" data-target="#historyModal" (click)="viewHistory()">
@@ -48,7 +48,8 @@
                     <div class="card profile-card pull-up" [@cardAnimation1]="isLoaded">
 
                         <div class="profile-image mb-3">
-                            <img src="assets/icons/student.svg" />
+                            <img *ngIf="profileDetails?.student_gender == 'M'" src="assets/icons/student.svg" />
+                            <img *ngIf="profileDetails?.student_gender == 'F'" src="assets/icons/student.svg" />
                         </div>
                         <div class="name">
                             <span>{{profileDetails?.student_first_name}} {{profileDetails?.student_last_name}}</span>
@@ -65,7 +66,7 @@
                     </div>
                 </div>
               </div>
-              <div class="row" *ngIf="suggestionResult" [@cardAnimation2]>
+              <div class="row" *ngIf="suggestionResult && studentQuestions[0]['question_answer'] !=null" [@cardAnimation2]>
                   <div class="col-12">
                       <div class="card profile-card suggestion-card mt-3" [@cardAnimation1]="isLoaded">
                         <h4 class="header">
@@ -153,8 +154,8 @@ Do not go where the path may lead, go instead where there is no path and leave a
                                 <div class="card question-wrapper mt-4">
                                     <h4 class="heading">{{question?.question_description}}</h4>
                                     <div class="button-holder mt-2 mb-3">
-                                        <button [disabled]="(userRole=='teacher' || userRole=='institute' || userRole=='undefined')" class="button button-no mr-3 {{question?.question_answer == 'no' ? 'selected' : 'null'}}" (click)="saveAnswer('no',question)">No</button>
-                                        <button [disabled]="(userRole=='teacher' || userRole=='institute' || userRole=='undefined')" class="button button-yes {{question?.question_answer == 'yes' ? 'selected' : 'null'}}" (click)="pushNewQuestion('yes',question)">Yes</button>
+                                        <button [disabled]="(userRole=='teacher' || userRole=='institute' || userRole=='undefined')" class="button button-no mr-3 {{question?.question_answer == 'no' ? 'selected' : 'null'}}" (click)="saveAnswer('no',question);generateValues()">No</button>
+                                        <button [disabled]="(userRole=='teacher' || userRole=='institute' || userRole=='undefined')" class="button button-yes {{question?.question_answer == 'yes' ? 'selected' : 'null'}}" (click)="pushNewQuestion('yes',question);generateValues()">Yes</button>
                                     </div>
                                 </div>
                             </div>
