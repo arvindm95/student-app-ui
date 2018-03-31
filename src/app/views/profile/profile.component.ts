@@ -44,6 +44,7 @@ export class ProfileComponent implements OnInit {
   progressStage4: any;
   teacherId: any;
   studentId: any;
+  flag: any;
   predictedCourse: any;
   userRole: any;
   predictionDetails: any;
@@ -304,6 +305,7 @@ export class ProfileComponent implements OnInit {
       this.progressStage2 = false;
       this.progressStage3 = false;
       this.progressStage4 = true;
+      this.flag = true;
     }, 6000);
 
     this.service.get('/student/questions/' + this.studentId).then((data) => {
@@ -325,6 +327,7 @@ export class ProfileComponent implements OnInit {
   }
 
   predictCall(toSend) {
+    this.flag = false;
     this.service.postLocal('http://localhost:5002/predict', (toSend)).then((data) => {
       //     student['prediction'] = data['prediction'].toLowerCase();
       //  console.log('called 8');
@@ -340,6 +343,7 @@ export class ProfileComponent implements OnInit {
       this.sendMail(this.predictedCourse);
       this.savePrediction(this.predictedCourse);
     }).catch((error) => {
+        this.flag = false;
       //this.sendMail("dropout");
       //this.savePrediction("dropout");
     });
