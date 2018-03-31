@@ -229,8 +229,20 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <span>Did we predict accurately for you?</span>
+                    </div>
+                    <div class="col-md-8 button-row">
+                        <button class="button custom-btn yes" data-dismiss="modal" (click)="showSuccess()">
+                                    Yes
+                                  </button>
+                        <button class="button custom-btn no" data-dismiss="modal" (click)="showFailure()">
+                                    No
+                                  </button>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

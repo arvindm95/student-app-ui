@@ -136,3 +136,35 @@
 .check{
     margin-right: 20px
 }
+.custom-btn{
+    font-size: 10px;
+    margin-right: 10px;
+    padding: 5px 30px;
+}
+
+.yes{
+    background: #fff;
+    border: 2px solid #31c3b2;
+    color: #31c3b2;
+    transition: 200ms ease-out;
+    &:hover, &.selected{
+        background: #31c3b2;
+        color: #fff;
+        transition: 200ms ease-in;
+    }
+}
+.no{
+    background: #fff;
+    border: 2px solid #df5d5d !important;
+    color: #df5d5d;
+    transition: 200ms ease-out;
+    &:hover, &.selected{
+        background: #df5d5d;
+        color: #fff;
+        transition: 200ms ease-in;
+    }
+}
+
+.button-row{
+    margin-top: 10px;
+}
