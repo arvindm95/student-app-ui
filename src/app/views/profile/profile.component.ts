@@ -63,15 +63,7 @@ export class ProfileComponent implements OnInit {
       this.getTeacherQuestions(params['id']);
     });
 
-    this.predictionDetails = [{
-      date: "31.03.2018",
-      status: "dropout"
-    }
-      ,
-    {
-      date: "29.03.2018",
-      status: "dropout"
-    }]
+    this.predictionDetails = [];
   }
 
   switchTab(tab) {
@@ -209,6 +201,42 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+
+  savePrediction(result) {
+    var today = new Date();
+
+    var result = result;
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
+
+    if(dd<10) {
+        dd = '0'+dd
+    } 
+
+    if(mm<10) {
+        mm = '0'+mm
+    }  
+
+    today = mm + '.' + dd + '.' + yyyy;
+
+    this.predictionDetails.push({
+      date : today,
+      status : result
+    });
+
+    //console.log(this.predictionDetails);
+
+    localStorage.setItem('prediction',JSON.stringify(this.predictionDetails));
+
+  }
+  viewHistory() {
+    
+    let predictionDetails = JSON.parse(localStorage.getItem('prediction'));
+    this.predictionDetails = predictionDetails;
+
+  }
+
   showPrediction() {
     this.progressStage1 = true;
     this.progressStage2 = false;
@@ -256,6 +284,7 @@ export class ProfileComponent implements OnInit {
       //     student['prediction'] = data['prediction'].toLowerCase();
       //  console.log('called 8');
       this.predictedCourse = data['prediction'];
+      this.savePrediction(this.predictedCourse);
     }).catch((error) => {
 
     });
