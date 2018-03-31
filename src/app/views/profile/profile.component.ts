@@ -279,7 +279,7 @@ export class ProfileComponent implements OnInit {
   }
 
   predictCall(toSend) {
-    this.service.postLocal('http://192.168.43.206:5000/predict', (toSend)).then((data) => {
+    this.service.postLocal('http://localhost:5000/predict', (toSend)).then((data) => {
       //     student['prediction'] = data['prediction'].toLowerCase();
       //  console.log('called 8');
       this.predictedCourse = data['prediction'];
