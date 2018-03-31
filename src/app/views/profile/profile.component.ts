@@ -169,8 +169,35 @@ export class ProfileComponent implements OnInit {
 
     let salute = "Hi " + name + ",\n\n";
 
-    let content = "Hello how are you?";
+    let content = `
+    Your prediction is `+ this.suggestionResult+`<br><br>
+    
+    
+    `;
+    if(this.suggestionResult == 'PG'){
+      content+=`We can't choose where we come from but we can choose where we go from there.<br>
+      Do not go where the path may lead, go instead where there is no path and leave a trail.`
+    } else if(this.suggestionResult == 'Job'){
+      content+=`Learn certain basic concepts in your technical side like data structures which help you in a long run.`
+    } else if(this.suggestionResult == 'DropOut'){
+      content+=`Learn about other fields which interests you.<br>
+      Talk to the necessary faculties in case they can help you understand in a way you like to learn the concepts.`
+    }
 
+/*     <ng-container *ngIf="suggestionResult == 'DropOut'">
+    Learn about other fields which interests you.<br>
+    Talk to the necessary faculties in case they can help you understand in a way you like to learn the concepts.
+</ng-container>
+<ng-container *ngIf="suggestionResult == 'Job'">
+    Learn certain basic concepts in your technical side like data structures which help you in a long run.
+</ng-container>
+<ng-container *ngIf="suggestionResult == 'PG'">
+    We can't choose where we come from but we can choose where we go from there.<br>
+Do not go where the path may lead, go instead where there is no path and leave a trail.
+</ng-container>
+
+
+ */
     let signature = "\n\nRegards,\nTeam Prophet AI";
 
     let message = salute + content + signature;
