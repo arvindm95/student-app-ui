@@ -175,7 +175,7 @@ export class ProfileComponent implements OnInit {
 
     let message = salute + content + signature;
 
-    let request = {
+    let request :any = {
       recipient_email: recipient_email,
       message: message
     }
