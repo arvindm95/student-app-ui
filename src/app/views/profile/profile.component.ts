@@ -152,8 +152,11 @@ export class ProfileComponent implements OnInit {
     let name = this.profileDetails.student_first_name;
     let recipient_email = this.profileDetails.student_email;
 
+
     let salute = "Hi " + name + ",\n\n";
+
     let content = "Hello how are you?";
+
     let signature = "\n\nRegards,\nTeam Prophet AI";
 
     let message = salute + content + signature;
@@ -321,7 +324,7 @@ export class ProfileComponent implements OnInit {
       this.sendMail(this.predictedCourse);
       this.savePrediction(this.predictedCourse);
     }).catch((error) => {
-      this.sendMail(this.predictedCourse);
+      //this.sendMail("dropout");
       //this.savePrediction("dropout");
     });
   }
