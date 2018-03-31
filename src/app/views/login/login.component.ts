@@ -36,8 +36,8 @@ export class LoginComponent implements OnInit {
       this.loginTo('student',data['user_id']);
     }else if(data['role_name'] == 'teacher'){
       this.loginTo('teacher',data['user_id']);
-    }else if(data['role_name'] == 'institution'){
-      this.loginTo('institution',data['user_id']);
+    }else if(data['role_name'] == 'institute'){
+      this.loginTo('institute',data['user_id']);
     }
       
     }).catch((error)=>{
@@ -50,8 +50,8 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['app/profile', role, id]);
     }else if(role == 'teacher'){
       this.router.navigate(['app/students-list', role, id]);
-    }if(role == 'institution'){
-      this.router.navigate(['app/students-list', role, id]);
+    }else if(role == 'institute'){
+      this.router.navigate(['app/dashboard', role, id]);
     }
     
   }

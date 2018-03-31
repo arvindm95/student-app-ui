@@ -24,9 +24,10 @@ const appRoutes: Routes = [
     path: 'app', component: LayoutComponent, children:
       [
         { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-        { path: 'dashboard', component: DashboardComponent },
+        { path: 'dashboard/:role/:id', component: DashboardComponent },
     //    { path: 'profile', component: ProfileComponent },
         { path: 'profile/:role/:id', component: ProfileComponent },
+        { path: 'students-list', component: StudentsListComponent },
         { path: 'students-list/:role/:id', component: StudentsListComponent },
         { path: 'profile/:role/:id/:teacherId', component: ProfileComponent },
       ]
