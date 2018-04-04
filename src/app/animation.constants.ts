@@ -32,7 +32,7 @@ export const CardAnimation3 = trigger('cardAnimation3', [
         animate('300ms 300ms ease-in-out')
     ]),
     transition('* => void', [
-        animate(400, style({ transform: 'translateY(50%)' }))
+        animate(100, style({ transform: 'translateY(50%)' }))
     ])
 ]);
 export const CardAnimation4 = trigger('cardAnimation4', [

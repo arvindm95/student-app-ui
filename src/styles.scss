@@ -79,6 +79,7 @@ html,body{
     color: #fff;
     font-weight: 300;
     text-transform: uppercase;
+    background: #19b9d5;
     &.status-dropout{
         background: #df5d5d;
     }
@@ -86,6 +87,9 @@ html,body{
         background: #3cba6e;
     }
     &.status-nothing{
+        background: #19b9d5;
+    }
+    &.status-job{
         background: #19b9d5;
     }
 }
@@ -132,4 +136,43 @@ html,body{
             }
         }
     }
+}
+
+.modal{
+    .modal-content{
+        border: 0px;
+    }
+    .modal-header{
+        padding: 10px 0px;
+        padding-right: 10px;
+        .modal-title{
+            padding: 5px 15px;
+            border-left: 3px solid #8fdfa9;
+            font-size: 18px;
+            font-weight: 400;
+        }
+    }
+    .modal-body{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+}
+
+.loader{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+}
+.cursor-pointer{
+    cursor: pointer;
+}
+.highcharts-legend{
+    display: none;
+}
+
+.simple-notification-wrapper {
+    width: 500px !important
 }
