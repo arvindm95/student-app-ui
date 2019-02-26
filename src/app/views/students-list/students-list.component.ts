@@ -35,18 +35,36 @@ export class StudentsListComponent implements OnInit {
     });
   }
   getAllStudents(){
-    this.service.get('/student/all').then((data)=>{
-      console.log(data);
-      this.studentsList = data;
-      let tempArray  = data;
+    // this.service.get('/student/all').then((data)=>{
+    //   console.log(data);
+      this.studentsList = [
+        {
+          'student_gender': 'M',
+          'student_first_name': 'John',
+          'student_last_name': 'Bruno',
+          'student_regno': '1001',
+          'student_department': 'CSE',
+          'student_email': 'jbruno@gmail.com',
+          'prediction': '73.3'
+        },
+        {
+          'student_gender': 'F',
+          'student_first_name': 'Natalie',
+          'student_last_name': 'Mars',
+          'student_regno': '1002',
+          'student_department': 'IT',
+          'student_email': 'nmars@gmail.com',
+          'prediction': '82.1'
+        }
+      ];
       this.studentsListFinal = this.studentsList/* .slice(0,20) */;
       
-      this.calculatePrediction(this.studentsListFinal);
+      // this.calculatePrediction(this.studentsListFinal);
 
       this.isLoaded = true;
-    }).catch((error)=>{
+    // }).catch((error)=>{
 
-    });
+    // });
   }
   openProfile(student){
    // [routerLink] = "['/app/profile', {'role':role,'id': student.student_id}]"

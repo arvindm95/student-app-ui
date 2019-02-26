@@ -110,11 +110,11 @@ export class ProfileComponent implements OnInit {
       question_answer: answer
     };
     console.log(request);
-    this.service.post('/teacher/questions/save', JSON.stringify(request)).then((data) => {
-      console.log(data);
-    }).catch((error) => {
+    // this.service.post('/teacher/questions/save', JSON.stringify(request)).then((data) => {
+    //   console.log(data);
+    // }).catch((error) => {
 
-    });
+    // });
   }
   saveAnswer(answer, question) {
     if (this.lastQuestionIndex <= 5) {
@@ -131,12 +131,12 @@ export class ProfileComponent implements OnInit {
       question_id: questionId,
       question_answer: answer
     };
-    console.log(request);
-    this.service.post('/student/questions/save', JSON.stringify(request)).then((data) => {
-      console.log(data);
-    }).catch((error) => {
+    // console.log(request);
+    // this.service.post('/student/questions/save', JSON.stringify(request)).then((data) => {
+    //   console.log(data);
+    // }).catch((error) => {
 
-    });
+    // });
   }
 
   pushNewQuestion(answer, question) {
@@ -154,13 +154,21 @@ export class ProfileComponent implements OnInit {
   }
 
   getStudentDetails(id) {
-    this.service.get('/student/' + id).then((data) => {
-      console.log(data);
-      this.profileDetails = data;
-      this.isLoaded = true;
-    }).catch((error) => {
+    // this.service.get('/student/' + id).then((data) => {
+    //   console.log(data);
+    this.profileDetails = {
+        'student_gender': 'M',
+        'student_first_name': 'John',
+        'student_last_name': 'Mathews',
+        'student_regno': '1001',
+        'student_department': 'CSE',
+        'student_email': 'jmathews@gmail.com',
+        'prediction': '73.3'
+      };
+    this.isLoaded = true;
+    // }).catch((error) => {
 
-    });
+    // });
   }
 
   sendMail(predictedCourse) {
@@ -171,83 +179,133 @@ export class ProfileComponent implements OnInit {
     let salute = "Hi " + name + ",\n\n";
 
     let content = `
-    Your prediction is `+ this.suggestionResult+`<br><br>
+    Your prediction is `+ this.suggestionResult + `<br><br>
     
     
     `;
-    if(this.suggestionResult == 'PG'){
-      content+=`We can't choose where we come from but we can choose where we go from there.<br>
+    if (this.suggestionResult == 'PG') {
+      content += `We can't choose where we come from but we can choose where we go from there.<br>
       Do not go where the path may lead, go instead where there is no path and leave a trail.`
-    } else if(this.suggestionResult == 'Job'){
-      content+=`Learn certain basic concepts in your technical side like data structures which help you in a long run.`
-    } else if(this.suggestionResult == 'DropOut'){
-      content+=`Learn about other fields which interests you.<br>
+    } else if (this.suggestionResult == 'Job') {
+      content += `Learn certain basic concepts in your technical side like data structures which help you in a long run.`
+    } else if (this.suggestionResult == 'DropOut') {
+      content += `Learn about other fields which interests you.<br>
       Talk to the necessary faculties in case they can help you understand in a way you like to learn the concepts.`
     }
 
-/*     <ng-container *ngIf="suggestionResult == 'DropOut'">
-    Learn about other fields which interests you.<br>
-    Talk to the necessary faculties in case they can help you understand in a way you like to learn the concepts.
-</ng-container>
-<ng-container *ngIf="suggestionResult == 'Job'">
-    Learn certain basic concepts in your technical side like data structures which help you in a long run.
-</ng-container>
-<ng-container *ngIf="suggestionResult == 'PG'">
-    We can't choose where we come from but we can choose where we go from there.<br>
-Do not go where the path may lead, go instead where there is no path and leave a trail.
-</ng-container>
-
-
- */
+    /*     <ng-container *ngIf="suggestionResult == 'DropOut'">
+        Learn about other fields which interests you.<br>
+        Talk to the necessary faculties in case they can help you understand in a way you like to learn the concepts.
+    </ng-container>
+    <ng-container *ngIf="suggestionResult == 'Job'">
+        Learn certain basic concepts in your technical side like data structures which help you in a long run.
+    </ng-container>
+    <ng-container *ngIf="suggestionResult == 'PG'">
+        We can't choose where we come from but we can choose where we go from there.<br>
+    Do not go where the path may lead, go instead where there is no path and leave a trail.
+    </ng-container>
+    
+    
+     */
     let signature = "\n\nRegards,\nTeam Prophet AI";
 
     let message = salute + content + signature;
 
-    let request :any = {
+    let request: any = {
       recipient_email: recipient_email,
       message: message
     }
-    this.service.post('/mail', request).then((data) => {
-      // this.isLoaded = true;
-      this._notificationsService.success('Success!', 'Analysis report has been sent to your email');
+    // this.service.post('/mail', request).then((data) => {
+    //   // this.isLoaded = true;
+    //   this._notificationsService.success('Success!', 'Analysis report has been sent to your email');
 
-    }).catch((error) => {
-      // this._notificationsService.error('Oops!', 'Could not deliver yo');
-    });
+    // }).catch((error) => {
+    //   // this._notificationsService.error('Oops!', 'Could not deliver yo');
+    // });
   }
 
   getSemesterDetails(id) {
-    this.service.get('/student/marks/' + id).then((data) => {
-      console.log(data);
-      this.semesterDetails = data;
-      this.predictOutcomeCall();
-      // this.isLoaded = true;
-    }).catch((error) => {
+    // this.service.get('/student/marks/' + id).then((data) => {
+    //   console.log(data);
+    this.semesterDetails = [{
+      'semester': 'I',
+      'semester_details': [{
+        'subject_name': 'dbms',
+        'subject_code': 'SUB01',
+        'subject_marks': '94'
+      }, {
+        'subject_name': 'os',
+        'subject_code': 'SUB02',
+        'subject_marks': '87'
+      }, {
+        'subject_name': 'algo',
+        'subject_code': 'SUB03',
+        'subject_marks': '90'
+      }, {
+        'subject_name': 'oops',
+        'subject_code': 'SUB04',
+        'subject_marks': '85'
+      }, {
+        'subject_name': 'data structures',
+        'subject_code': 'SUB05',
+        'subject_marks': '82'
+      }, {
+        'subject_name': 'data mining',
+        'subject_code': 'SUB06',
+        'subject_marks': '86'
+      }, {
+        'subject_name': 'networks',
+        'subject_code': 'SUB07',
+        'subject_marks': '95'
+      }, {
+        'subject_name': 'microprocessors',
+        'subject_code': 'SUB08',
+        'subject_marks': '88'
+      }]
+    }];
+    this.predictOutcomeCall();
+    // this.isLoaded = true;
+    // }).catch((error) => {
 
-    });
+    // });
   }
 
   getStudentQuestions(id) {
-    this.service.get('/student/questions/' + id).then((data) => {
-      console.log(data);
-      this.studentQuestions = data;
-      // this.isLoaded = true;
+    // this.service.get('/student/questions/' + id).then((data) => {
+    //   console.log(data);
+    this.studentQuestions = [{
+      'question_description': 'Did you choose this course with passion?',
+      'question_answer': 'yes'
+    }, {
+      'question_description': 'Did you choose this course with passion?',
+      'question_answer': 'no'
+    }, {
+      'question_description': 'Did you choose this course with passion?',
+      'question_answer': 'no'
+    }, {
+      'question_description': 'Did you choose this course with passion?',
+      'question_answer': 'yes'
+    }, {
+      'question_description': 'Did you choose this course with passion?',
+      'question_answer': 'yes'
+    }];
+    // this.isLoaded = true;
 
-      // for(let question of this.studentQuestions){
-      for (let i = 0; i < this.studentQuestions.length; i++) {
-        let question = this.studentQuestions[i];
-        if (question.question_answer != null) {
-          this.questions.push(question);
-        } else {
-          this.questions.push(question);
-          this.lastQuestionIndex = i;
-          break;
-        }
-      };
-      this.generateValues();
-    }).catch((error) => {
+    // for(let question of this.studentQuestions){
+    for (let i = 0; i < this.studentQuestions.length; i++) {
+      let question = this.studentQuestions[i];
+      if (question.question_answer != null) {
+        this.questions.push(question);
+      } else {
+        this.questions.push(question);
+        this.lastQuestionIndex = i;
+        break;
+      }
+    };
+    this.generateValues();
+    // }).catch((error) => {
 
-    });
+    // });
   }
 
   getTeacherQuestions(id) {
@@ -255,25 +313,40 @@ Do not go where the path may lead, go instead where there is no path and leave a
     if (this.teacherId) {
       url = '/teacher/questions/' + 52 + "?student=" + this.studentId;
     }
-    this.service.get(url).then((data) => {
-      console.log(data);
-      this.teacherQuestions = data;
-      // this.isLoaded = true;
+    // this.service.get(url).then((data) => {
+    //   console.log(data);
+    this.teacherQuestions = [{
+      'question_description': 'Did you choose this course with passion?',
+      'question_answer': 'yes'
+    }, {
+      'question_description': 'Did you choose this course with passion?',
+      'question_answer': 'no'
+    }, {
+      'question_description': 'Did you choose this course with passion?',
+      'question_answer': 'no'
+    }, {
+      'question_description': 'Did you choose this course with passion?',
+      'question_answer': 'yes'
+    }, {
+      'question_description': 'Did you choose this course with passion?',
+      'question_answer': 'yes'
+    }];
+    // this.isLoaded = true;
 
-      // for(let question of this.studentQuestions){
-      for (let i = 0; i < this.teacherQuestions.length; i++) {
-        let question = this.teacherQuestions[i];
-        if (question.question_answer != null) {
-          this.questions_teacher.push(question);
-        } else {
-          this.questions_teacher.push(question);
-          this.lastQuestionTeacherIndex = i;
-          break;
-        }
-      };
-    }).catch((error) => {
+    // for(let question of this.studentQuestions){
+    for (let i = 0; i < this.teacherQuestions.length; i++) {
+      let question = this.teacherQuestions[i];
+      if (question.question_answer != null) {
+        this.questions_teacher.push(question);
+      } else {
+        this.questions_teacher.push(question);
+        this.lastQuestionTeacherIndex = i;
+        break;
+      }
+    };
+    // }).catch((error) => {
 
-    });
+    // });
   }
 
 
@@ -335,21 +408,38 @@ Do not go where the path may lead, go instead where there is no path and leave a
       this.flag = true;
     }, 6000);
 
-    this.service.get('/student/questions/' + this.studentId).then((data) => {
-      console.log(data);
-      //  this.studentQuestions = data;
-      let testData = `{
+    // this.service.get('/student/questions/' + this.studentId).then((data) => {
+    // console.log(data);
+
+    let data = [{
+      'question_description': 'Did you choose this course with passion?',
+      'question_answer': 'yes'
+    }, {
+      'question_description': 'Did you choose this course with passion?',
+      'question_answer': 'no'
+    }, {
+      'question_description': 'Did you choose this course with passion?',
+      'question_answer': 'no'
+    }, {
+      'question_description': 'Did you choose this course with passion?',
+      'question_answer': 'yes'
+    }, {
+      'question_description': 'Did you choose this course with passion?',
+      'question_answer': 'yes'
+    }];
+    this.studentQuestions = data;
+    let testData = `{
         "Q1": [`+ (data[0]['question_answer'] == 'yes' ? 1.0 : 0.0) + `],
         "Q2": [`+ (data[1]['question_answer'] == 'yes' ? 1.0 : 0.0) + `],
         "Q3": [`+ (data[2]['question_answer'] == 'yes' ? 1.0 : 0.0) + `],
         "Q4": [`+ (data[3]['question_answer'] == 'yes' ? 1.0 : 0.0) + `],
         "Q5": [`+ (data[4]['question_answer'] == 'yes' ? 1.0 : 0.0) + `]  
     }`;
-      this.predictCall(testData);
+    this.predictCall(testData);
 
-    }).catch((error) => {
+    // }).catch((error) => {
 
-    });
+    // });
 
   }
 
@@ -370,20 +460,20 @@ Do not go where the path may lead, go instead where there is no path and leave a
       this.sendMail(this.predictedCourse);
       this.savePrediction(this.predictedCourse);
     }).catch((error) => {
-        this.flag = false;
+      this.flag = false;
       //this.sendMail("dropout");
       //this.savePrediction("dropout");
     });
   }
 
-  predictOutcomeCall(){
-   // let toSend = {};
-   // let student_marks = this.semesterDetails;
-     let toSend = `{    
-          "M1": [`+ this.semesterDetails[0].semester_details[0].subject_marks+`],
-          "M2": [`+ this.semesterDetails[0].semester_details[1].subject_marks+`],
-          "M3": [`+ this.semesterDetails[0].semester_details[2].subject_marks+`],
-          "M4": [`+ this.semesterDetails[0].semester_details[3].subject_marks+`],
+  predictOutcomeCall() {
+    // let toSend = {};
+    // let student_marks = this.semesterDetails;
+    let toSend = `{    
+          "M1": [`+ this.semesterDetails[0].semester_details[0].subject_marks + `],
+          "M2": [`+ this.semesterDetails[0].semester_details[1].subject_marks + `],
+          "M3": [`+ this.semesterDetails[0].semester_details[2].subject_marks + `],
+          "M4": [`+ this.semesterDetails[0].semester_details[3].subject_marks + `],
           "sQ1": [0.0],
           "sQ2": [0.0],
           "sQ3": [0.0],
@@ -395,17 +485,17 @@ Do not go where the path may lead, go instead where there is no path and leave a
           "TQ4": [0.0],
           "TQ5": [0.0]
           }`;
-    this.service.postLocal('http://localhost:5001/predict', toSend).then((data)=>{
-       
-        console.log('called 8');
-        this.suggestionResult = data['prediction'];
-      }).catch((error)=>{
-  
-      });
+    this.service.postLocal('http://localhost:5001/predict', toSend).then((data) => {
+
+      console.log('called 8');
+      this.suggestionResult = data['prediction'];
+    }).catch((error) => {
+
+    });
   }
-  generateValues(){
+  generateValues() {
     let score1, score2, score3, score4;
-   //this.studentQuestions[0]['question_answer'] !=null
+    //this.studentQuestions[0]['question_answer'] !=null
     /* this.studentQuestions.forEach(question => {
       if(question['question_answer'] != null){
        score1 = question['question_answer'] == 'yes' ? 1 * 85 : 0;
@@ -417,21 +507,21 @@ Do not go where the path may lead, go instead where there is no path and leave a
       
     }); */
     score1 = this.studentQuestions[0]['question_answer'] == 'yes' ? 1 * 65 : 0;
-    score2 = this.studentQuestions[1]['question_answer'] == 'yes' ? 1 * 25 : (score1/2 + 10);
+    score2 = this.studentQuestions[1]['question_answer'] == 'yes' ? 1 * 25 : (score1 / 2 + 10);
     score3 = this.studentQuestions[2]['question_answer'] == 'yes' ? (1 * 6 + score1) : 0;
-    score4 = this.studentQuestions[3]['question_answer'] == 'yes' ? ((1 * 2) + score3 ): 0;
+    score4 = this.studentQuestions[3]['question_answer'] == 'yes' ? ((1 * 2) + score3) : 0;
     this.suggestions = JSON.parse(`[{
       "field" : "Creativity",
-      "score" : "`+score1+`"
+      "score" : "`+ score1 + `"
     },{
       "field" : "Coding concepts",
-      "score" : "`+ score3+`"
+      "score" : "`+ score3 + `"
     },{
       "field" : "Participation",
-      "score" : "`+ score2+`"
+      "score" : "`+ score2 + `"
     },{
       "field" : "Communication",
-      "score" : "`+score4+`"
+      "score" : "`+ score4 + `"
     }]`);
   }
 }

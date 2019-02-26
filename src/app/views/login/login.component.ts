@@ -19,41 +19,44 @@ import {
 export class LoginComponent implements OnInit {
   username: any;
   password: any;
-  constructor(private router: Router, private service: HttpService,private _notificationsService: NotificationsService) { }
+  constructor(private router: Router, private service: HttpService, private _notificationsService: NotificationsService) { }
 
   ngOnInit() {
-    
+
   }
 
-  login(){
+  login() {
     let toSend = {};
     toSend['email'] = this.username;
     toSend['password'] = this.password;
-    this.service.post('/user/login', JSON.stringify(toSend)).then((data)=>{
-      console.log(data);
-    //  this.profileDetails = data;
-    if(data['role_name'] == 'student'){
-      this.loginTo('student',data['user_id']);
-    }else if(data['role_name'] == 'teacher'){
-      this.loginTo('teacher',data['user_id']);
-    }else if(data['role_name'] == 'institute'){
-      this.loginTo('institute',data['user_id']);
+    // this.service.post('/user/login', JSON.stringify(toSend)).then((data)=>{
+    let data = {
+      'role_name': 'student',
+      'user_id': 'username'
     }
-      
-    }).catch((error)=>{
-    //  this.loginTo('teacher',1);
-    this._notificationsService.error('Error', 'Incorrect user credentials');
-    });
+    //  this.profileDetails = data;
+    if (data['role_name'] == 'student') {
+      this.loginTo('student', data['user_id']);
+    } else if (data['role_name'] == 'teacher') {
+      this.loginTo('teacher', data['user_id']);
+    } else if (data['role_name'] == 'institute') {
+      this.loginTo('institute', data['user_id']);
+    }
+
+    // }).catch((error)=>{
+    // //  this.loginTo('teacher',1);
+    // this._notificationsService.error('Error', 'Incorrect user credentials');
+    // });
   }
-  loginTo(role, id){
-    if(role == 'student'){
+  loginTo(role, id) {
+    if (role == 'student') {
       this.router.navigate(['app/profile', role, id]);
-    }else if(role == 'teacher'){
+    } else if (role == 'teacher') {
       this.router.navigate(['app/students-list', role, id]);
-    }else if(role == 'institute'){
+    } else if (role == 'institute') {
       this.router.navigate(['app/dashboard', role, id]);
     }
-    
+
   }
 
 }
