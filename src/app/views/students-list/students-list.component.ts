@@ -68,12 +68,12 @@ export class StudentsListComponent implements OnInit {
     ];
 
     this.institutionList = [{
-      'name': 'SSN College of Engineering',
-      'location': 'Chennai',
+      'name': 'Indian Institute of Science',
+      'location': 'Bangalore',
       'rank': '1',
-      'code': '32123',
-      'latitude': 22.1234,
-      'longitude': 32.4242,
+      'code': '3212',
+      'latitude': 12.95798,
+      'longitude': 77.401207,
       'parameters': [
         {
           'name':'Student teacher Ratio',
@@ -86,16 +86,63 @@ export class StudentsListComponent implements OnInit {
         {
           'name':'Infrastructure',
           'value': '80'
+        },
+        {
+          'name':'cited papers',
+          'value':'70'
+        },
+        {
+          'name':'Hostel facility',
+          'value':'60'
+        },
+        {
+          'name':'entrepreneurship',
+          'value':'75'
         }
       ]
     },
     {
-      'name': 'National institute of technology',
-      'location': 'Trichy',
+      'name': 'Jawaharlal Nehru University',
+      'location': 'Delhi',
       'rank': '2',
+      'code': '4212',
+      'latitude': 26.633243,
+      'longitude': 77.21879,
+      'parameters': [
+        {
+          'name':'Student teacher Ratio',
+          'value': '40'
+        },
+        {
+          'name':'Patents',
+          'value': '60'
+        },
+        {
+          'name':'Infrastructure',
+          'value': '70'
+        },
+        {
+          'name':'cited papers',
+          'value':'75'
+        },
+        {
+          'name':'Hostel facility',
+          'value':'50'
+        },
+        {
+          'name':'entrepreneurship',
+          'value':'65'
+        }
+      ]
+    },
+    
+    {
+      'name': 'Banaras Hindu University',
+      'location': 'Delhi',
+      'rank': '3',
       'code': '98745',
-      'latitude': 82.1234,
-      'longitude': 92.4242,
+      'latitude': 25.30958,
+      'longitude': 83.00569,
       'parameters': [
         {
           'name':'Student teacher Ratio',
@@ -108,9 +155,90 @@ export class StudentsListComponent implements OnInit {
         {
           'name':'Infrastructure',
           'value': '60'
+        },
+        {
+          'name':'cited papers',
+          'value':'70'
+        },
+        {
+          'name':'Hostel facility',
+          'value':'60'
+        },
+        {
+          'name':'entrepreneurship',
+          'value':'75'
         }
       ]
-    }];
+    },
+        {
+          'name': 'Anna University',
+          'location': 'Chennai',
+          'rank': '4',
+          'code': '5212',
+          'latitude': 25.30958,
+          'longitude': 83.00569,
+          'parameters': [
+            {
+              'name':'Student teacher Ratio',
+              'value': '70'
+            },
+            {
+              'name':'Patents',
+              'value': '20'
+            },
+            {
+              'name':'Infrastructure',
+              'value': '80'
+            },
+            {
+              'name':'cited papers',
+              'value':'70'
+            },
+            {
+              'name':'Hostel facility',
+              'value':'40'
+            },
+            {
+              'name':'entrepreneurship',
+              'value':'55'
+            }
+          ]
+        },
+        {
+          'name': 'University of delhi',
+          'location': 'Delhi',
+          'rank': '5',
+          'code': '7212',
+          'latitude': 28.70702,
+          'longitude': 77.21225,
+          'parameters': [
+            {
+              'name':'Student teacher Ratio',
+              'value': '50'
+            },
+            {
+              'name':'Patents',
+              'value': '70'
+            },
+            {
+              'name':'Infrastructure',
+              'value': '85'
+            },
+            {
+              'name':'cited papers',
+              'value':'60'
+            },
+            {
+              'name':'Hostel facility',
+              'value':'60'
+            },
+            {
+              'name':'entrepreneurship',
+              'value':'45'
+            }
+          ]
+        }
+  ];
 
     this.studentsListFinal = this.studentsList/* .slice(0,20) */;
     this.location = [{ lat: 11.059821, lng: 78.387451 }];
