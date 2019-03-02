@@ -94,10 +94,6 @@ export class StudentsListComponent implements OnInit {
         {
           'name':'Hostel facility',
           'value':'60'
-        },
-        {
-          'name':'entrepreneurship',
-          'value':'75'
         }
       ]
     },
@@ -128,10 +124,6 @@ export class StudentsListComponent implements OnInit {
         {
           'name':'Hostel facility',
           'value':'50'
-        },
-        {
-          'name':'entrepreneurship',
-          'value':'65'
         }
       ]
     },
@@ -163,10 +155,6 @@ export class StudentsListComponent implements OnInit {
         {
           'name':'Hostel facility',
           'value':'60'
-        },
-        {
-          'name':'entrepreneurship',
-          'value':'75'
         }
       ]
     },
@@ -197,10 +185,6 @@ export class StudentsListComponent implements OnInit {
             {
               'name':'Hostel facility',
               'value':'40'
-            },
-            {
-              'name':'entrepreneurship',
-              'value':'55'
             }
           ]
         },
@@ -231,10 +215,6 @@ export class StudentsListComponent implements OnInit {
             {
               'name':'Hostel facility',
               'value':'60'
-            },
-            {
-              'name':'entrepreneurship',
-              'value':'45'
             }
           ]
         }
