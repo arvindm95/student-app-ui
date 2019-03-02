@@ -61,7 +61,11 @@
 
       <div class="right-section padding-0" [class.show] = "isRightSectionOpen">
         <div class="card margin-0 map-wrapper" *ngIf="isRightSectionOpen" [@slideInFromRight]>
-
+           <div class="mapview">
+            <agm-map *ngFor="let data of location; let i=index" [latitude]="data.lat" [longitude]= "data.lng">
+              <agm-marker *ngFor="let data of location; let i=index" [latitude]="data.lat" [longitude]="data.lng"></agm-marker>
+            </agm-map>
+           </div>
         </div>
 
         <div class="close-icon" (click)="closeDetailsOnRight()" *ngIf="isRightSectionOpen">

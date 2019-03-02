@@ -20,10 +20,12 @@ import { Router } from '@angular/router';
 export class StudentsListComponent implements OnInit {
   isLoaded:boolean;
   studentsList: any =[];
+  location:any;
   role: any;
   studentsListFinal: any;
   teacherId: any;
   isRightSectionOpen: Boolean;
+  count:any;
   constructor(private service: HttpService, private route: ActivatedRoute,private router: Router) { 
 
   }
@@ -32,6 +34,7 @@ export class StudentsListComponent implements OnInit {
     this.route.params.subscribe((params) => {
       this.role = params['role'];
       this.teacherId = params['id'];
+      this.count=0;
       this.getAllStudents();
     });
   }
@@ -58,6 +61,8 @@ export class StudentsListComponent implements OnInit {
           'prediction': '82.1'
         }
       ];
+      
+      this.location=[{lat:11.059821,lng:	78.387451}];
       this.studentsListFinal = this.studentsList/* .slice(0,20) */;
       
       // this.calculatePrediction(this.studentsListFinal);
@@ -122,7 +127,14 @@ export class StudentsListComponent implements OnInit {
 
 
   openDetailsOnRight(){
+    
     this.isRightSectionOpen = true;
+    this.count++;
+    if(this.count%2==0)
+       this.location=[{lat:29.238478,lng:76.431885}];
+    else
+    this.location=[{lat:11.059821,lng:	78.387451}];
+
   }
 
   closeDetailsOnRight(){
