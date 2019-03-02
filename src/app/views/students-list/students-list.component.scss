@@ -45,7 +45,7 @@
 }
 
 .map-wrapper{
-    height: calc(100vh - 70px);
+    height: calc(100vh - 140px);
     position: relative;
   .map-area{
     position: absolute;
@@ -119,8 +119,8 @@
   }
   
   .tr-selected{
-      background: #3498db !important;
+      background: #e2e4ef !important;
       td{
-          color: #fff;
+          color: #333;
       }
   }
