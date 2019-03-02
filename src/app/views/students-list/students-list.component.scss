@@ -65,10 +65,13 @@
 
         .close-icon{
             position: absolute;
-            right: 20px;
+            right: 10px;
             top: 10px;
-            font-size: 24px;
             cursor: pointer;
+            .close-image{
+                width: 40px;
+                height: auto;
+            }
         }
     }
 }
