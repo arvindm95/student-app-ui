@@ -4,6 +4,7 @@
         display: flex;
         align-items: center;
         .tabs-holder{
+            padding-left: 10px;
             display: flex;
             margin-bottom: 0;
             .tab{
@@ -45,6 +46,18 @@
 
 .map-wrapper{
     height: calc(100vh - 70px);
+    position: relative;
+  .map-area{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+    agm-map {
+        height: 300px;
+      //  position: absolute;
+      //  bottom: 0px;
+      }
+
 }
 
 .ranking-holder{
@@ -62,6 +75,12 @@
         &.show{
             flex: 1;
         }
+        .header{
+            font-size: 18px;
+            font-weight: 400;
+            padding: 20px;
+            color: #555;
+        }
 
         .close-icon{
             position: absolute;
@@ -75,3 +94,33 @@
         }
     }
 }
+
+
+  .progress-container{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    .progress-card{
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 200px;
+        height: 130px;
+        .text{
+            font-weight: 400;
+            padding-top: 10px;
+            font-size: 16px;
+        }
+    }
+  }
+  
+  .tr-selected{
+      background: #3498db !important;
+      td{
+          color: #fff;
+      }
+  }

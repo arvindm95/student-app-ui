@@ -20,12 +20,18 @@ import { Router } from '@angular/router';
 export class StudentsListComponent implements OnInit {
   isLoaded: boolean;
   studentsList: any = [];
+  location: any;
   role: any;
   studentsListFinal: any;
   teacherId: any;
   isRightSectionOpen: Boolean;
+  count: any;
   institutionList: any = [];
+  parameters: any = [];
+  selectedInstitution: any;
   constructor(private service: HttpService, private route: ActivatedRoute, private router: Router) {
+
+
 
   }
 
@@ -33,6 +39,7 @@ export class StudentsListComponent implements OnInit {
     this.route.params.subscribe((params) => {
       this.role = params['role'];
       this.teacherId = params['id'];
+      this.count = 0;
       this.getAllStudents();
     });
   }
@@ -64,20 +71,53 @@ export class StudentsListComponent implements OnInit {
       'name': 'SSN College of Engineering',
       'location': 'Chennai',
       'rank': '1',
-      'code' : '32123'
+      'code': '32123',
+      'latitude': 22.1234,
+      'longitude': 32.4242,
+      'parameters': [
+        {
+          'name':'Student teacher Ratio',
+          'value': '50'
+        },
+        {
+          'name':'Patents',
+          'value': '20'
+        },
+        {
+          'name':'Infrastructure',
+          'value': '80'
+        }
+      ]
     },
     {
       'name': 'National institute of technology',
       'location': 'Trichy',
       'rank': '2',
-      'code': '98745'
+      'code': '98745',
+      'latitude': 82.1234,
+      'longitude': 92.4242,
+      'parameters': [
+        {
+          'name':'Student teacher Ratio',
+          'value': '20'
+        },
+        {
+          'name':'Patents',
+          'value': '80'
+        },
+        {
+          'name':'Infrastructure',
+          'value': '60'
+        }
+      ]
     }];
 
     this.studentsListFinal = this.studentsList/* .slice(0,20) */;
-
+    this.location = [{ lat: 11.059821, lng: 78.387451 }];
     // this.calculatePrediction(this.studentsListFinal);
 
     this.isLoaded = true;
+
     // }).catch((error)=>{
 
     // });
@@ -136,12 +176,20 @@ export class StudentsListComponent implements OnInit {
   }
 
 
-  openDetailsOnRight() {
+  openDetailsOnRight(institution) {
+
     this.isRightSectionOpen = true;
+    this.location = [{ lat: institution.latitude, lng: institution.longitude }];
+    
+    this.parameters = institution['parameters'];
+
+    this.selectedInstitution = institution;
+
   }
 
   closeDetailsOnRight() {
     this.isRightSectionOpen = false;
+    this.selectedInstitution = null;
   }
 
 }
