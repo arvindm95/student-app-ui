@@ -1,0 +1,185 @@
+.profile-navbar{
+    background: #30384c;
+    .profile-tabs{
+        display: flex;
+        align-items: center;
+        .tabs-holder{
+            padding-left: 10px;
+            display: flex;
+            margin-bottom: 0;
+            .tab{
+                display: inline-block;
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 70px;
+                padding: 0 15px;
+                cursor: pointer;
+                a{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    height: 100%;
+                    width: 100%;
+                    text-transform: uppercase;
+                    border-bottom: 2px solid transparent;
+                    transition: 200ms ease-out;
+                    font-size: 13px;
+                    color: #fff;
+                    text-decoration: none;
+                    &:hover{
+                        border-bottom: 2px solid #fab63f;
+                        transition: 200ms ease-in;
+                    }
+                    &.selected{
+                        border-bottom: 2px solid #fab63f;
+                    }
+                }
+            }
+        }
+    }
+}
+.align-center{
+    text-align: center;
+}
+
+
+
+.filter-area{
+
+    height: calc(100vh - 370px);
+    ul.ks-cboxtags {
+        list-style: none;
+        padding: 20px;
+    }
+    ul.ks-cboxtags li{
+      display: inline;
+    }
+    ul.ks-cboxtags li label{
+        display: inline-block;
+        background-color: rgba(255, 255, 255, .9);
+        border: 2px solid rgba(139, 139, 139, .3);
+        color: #adadad;
+        border-radius: 25px;
+        white-space: nowrap;
+        margin: 3px 0px;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+        transition: all .2s;
+    }
+    
+    ul.ks-cboxtags li label {
+        padding: 8px 12px;
+        cursor: pointer;
+    }
+    
+    ul.ks-cboxtags li label::before {
+        display: inline-block;
+        font-style: normal;
+        font-variant: normal;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        font-size: 12px;
+        padding: 2px 6px 2px 2px;
+        content: "\f067";
+        transition: transform .3s ease-in-out;
+    }
+    
+    ul.ks-cboxtags li input[type="checkbox"]:checked + label::before {
+        content: "\f00c";
+        transform: rotate(-360deg);
+        transition: transform .3s ease-in-out;
+    }
+    
+    ul.ks-cboxtags li input[type="checkbox"]:checked + label {
+        border: 2px solid #1bdbf8;
+        background-color: #12bbd4;
+        color: #fff;
+        transition: all .2s;
+    }
+    
+    ul.ks-cboxtags li input[type="checkbox"] {
+      display: absolute;
+    }
+    ul.ks-cboxtags li input[type="checkbox"] {
+      position: absolute;
+      opacity: 0;
+    }
+    ul.ks-cboxtags li input[type="checkbox"]:focus + label {
+      border: 2px solid #e9a1ff;
+    }
+      }
+
+
+      .question{
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          background: #fff;
+          box-shadow: 0 1px 10px #ddd;
+          padding: 30px;
+          width: 100%;
+          .heading{
+              color: #555;
+              font-size: 24px;
+          }
+      }
+
+      .container{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          
+      }
+
+      .button-holder{
+          .button-skip{
+             // width: 120px;
+              background: #fff;
+              color: #555;
+              border: 2px solid #aaa;
+          }
+
+          .button-next{
+              background: #27ae60;
+              
+          }
+
+          .button-process{
+              width: 150px;
+            background: #27ae60;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 400;
+            transition: 250ms ease-in;
+            border: 1px solid #27ae60;
+
+            &:hover{
+               // border: 2px solid #27ae60;
+                background: #fff;
+                transition: 250ms ease-in;
+                color: #27ae60;
+            }
+
+        }
+      }
+
+
+.main-page-area{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 300px;
+
+    .header{
+        font-size: 26px;
+    }
+}      
