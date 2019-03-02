@@ -23,6 +23,7 @@ export class StudentsListComponent implements OnInit {
   role: any;
   studentsListFinal: any;
   teacherId: any;
+  isRightSectionOpen: Boolean;
   constructor(private service: HttpService, private route: ActivatedRoute,private router: Router) { 
 
   }
@@ -63,13 +64,15 @@ export class StudentsListComponent implements OnInit {
 
       this.isLoaded = true;
     // }).catch((error)=>{
-
+      
     // });
   }
   openProfile(student){
    // [routerLink] = "['/app/profile', {'role':role,'id': student.student_id}]"
     this.router.navigate(['app/profile', this.role, student.student_id, this.teacherId]);
   }
+
+
   calculatePrediction(studentsListFinal){
     console.log('called 1');
     
@@ -115,6 +118,15 @@ export class StudentsListComponent implements OnInit {
       }).catch((error)=>{
   
       });
+  }
+
+
+  openDetailsOnRight(){
+    this.isRightSectionOpen = true;
+  }
+
+  closeDetailsOnRight(){
+    this.isRightSectionOpen = false;
   }
 
 }
