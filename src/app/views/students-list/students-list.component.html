@@ -140,6 +140,11 @@
                   
                 </td> -->
               </tr>
+              <tr *ngIf="institutionList?.length == 0 && isLoaded">
+                <td colspan="4" class="table-no-data">
+                  No data available to display
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -154,21 +159,21 @@
           <div class="header">
             {{selectedInstitution?.university}}
           </div>
-          <div class="progress-container" *ngIf="selectedInstitution">
+          <div class="progress-container mt-4" *ngIf="selectedInstitution">
               <div class="progress-card" >
-                  <okr-progress-bar-circle [setValue]="selectedInstitution?.education"></okr-progress-bar-circle>
+                  <okr-progress-bar-circle [setValue]="selectedInstitution?.education" [size]="85"></okr-progress-bar-circle>
                   <h5 class="text">Education</h5>
               </div>
               <div class="progress-card" >
-                  <okr-progress-bar-circle [setValue]="selectedInstitution?.entrepreneurship"></okr-progress-bar-circle>
+                  <okr-progress-bar-circle [setValue]="selectedInstitution?.entrepreneurship" [size]="85"></okr-progress-bar-circle>
                   <h5 class="text">Entrepreneurship</h5>
               </div>
               <div class="progress-card" >
-                  <okr-progress-bar-circle [setValue]="selectedInstitution?.research"></okr-progress-bar-circle>
+                  <okr-progress-bar-circle [setValue]="selectedInstitution?.research" [size]="85"></okr-progress-bar-circle>
                   <h5 class="text">Research</h5>
               </div>
               <div class="progress-card" >
-                  <okr-progress-bar-circle [setValue]="selectedInstitution?.infrastructure"></okr-progress-bar-circle>
+                  <okr-progress-bar-circle [setValue]="selectedInstitution?.infrastructure" [size]="85"></okr-progress-bar-circle>
                   <h5 class="text">Infrastructure</h5>
               </div>
               

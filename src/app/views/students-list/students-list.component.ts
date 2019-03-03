@@ -104,6 +104,7 @@ export class StudentsListComponent implements OnInit {
     
     this.service.post('/rest/university/all', JSON.stringify(toSend)).then((data) => {
       this.institutionList = data;
+      this.isLoaded = true;
     }).catch(error => {
 
     });
@@ -291,7 +292,7 @@ export class StudentsListComponent implements OnInit {
     this.location = [{ lat: 11.059821, lng: 78.387451 }];
     // this.calculatePrediction(this.studentsListFinal);
 
-    this.isLoaded = true;
+   
 
     // }).catch((error)=>{
 
