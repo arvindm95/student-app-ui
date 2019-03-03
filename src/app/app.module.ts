@@ -17,6 +17,8 @@ import { NotificationsService } from 'angular2-notifications';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { HttpService } from './services/http/http.services';
 import { FormsModule } from '@angular/forms';
+import { BarChartComponent } from './components/bar-chart/bar-chart.component';
+import { PieComponent } from './components/pie/pie.component';
 const appRoutes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
@@ -45,7 +47,9 @@ const appRoutes: Routes = [
     DashboardComponent,
     StudentsListComponent,
     DashboardChartComponent,
-    ProgressBarCircleComponent
+    ProgressBarCircleComponent,
+    BarChartComponent,
+    PieComponent
   ],
   imports: [
     HttpClientModule,

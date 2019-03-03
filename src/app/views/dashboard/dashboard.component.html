@@ -3,7 +3,7 @@
       <div class="profile-tabs">
         <ul class="tabs-holder">
           <li class="tab"><a href="#"  class="selected">Dashboard</a></li>
-          <li class="tab"><a href="#" [routerLink]="['/app/students-list',role, instituteId]">Students List</a></li>
+          <li class="tab"><a href="#" [routerLink]="['/app/students-list',role, instituteId]">College List</a></li>
           <!-- <li class="tab"><a href="#" [routerLink]="['/app/profile']">Profile</a></li> -->
         </ul>
       </div>
@@ -43,7 +43,7 @@
         <div class="card chart-container" [@cardAnimation1]>
           <div class="card-header">
             <span class="text">
-               Academic Progress chart
+               University Ranks in Top 5 colleges
             </span>
           </div>
           <dashboard-chart></dashboard-chart>
@@ -54,95 +54,49 @@
           <div class="card-header">Chart 2</div>
            -->
           <div class="card table-wrapper" [@cardAnimation2]>
-              <h4 class="heading">Students Requiring Attention</h4>
-              <table class="table">
-                <thead>
-                  <tr>
-                      <th>Name</th>
-                      <th>Roll number</th>
-                      <th>Department</th>
-                      <th>Status</th>
-                  </tr>
-                  
-                </thead>
-                <tbody>
-                  <tr class="cursor-pointer">
-                      <td >
-                       <!--  <img class="profile-image" *ngIf="student?.student_gender == 'M'" src="assets/icons/student-m.svg"> -->
-                        <img class="profile-image"  src="assets/icons/student-g.svg">
-                         Panini Bakshi
-                      </td>
-                      <td>756119</td>
-                      <td>CSE</td>
-                     
-                      <td>
-                          <span class="badge status-dropout" >dropout</span>
-                          <!-- <span class="badge status-{{student?.prediction}}" *ngIf="student.prediction">{{student?.prediction}}</span> -->
-               
-                      </td>
-                  </tr>  
-                  <tr class="cursor-pointer">
-                      <td >
-                       <!--  <img class="profile-image" *ngIf="student?.student_gender == 'M'" src="assets/icons/student-m.svg"> -->
-                        <img class="profile-image"  src="assets/icons/student-m.svg">
-                        Prashanth Mahesh
-                      </td>
-                      <td>756129</td>
-                      <td>CSE</td>
-                     
-                      <td>
-                          <span class="badge status-dropout" >dropout</span>
-                          <!-- <span class="badge status-{{student?.prediction}}" *ngIf="student.prediction">{{student?.prediction}}</span> -->
-               
-                      </td>
-                  </tr>  
-                  <tr class="cursor-pointer">
-                      <td >
-                       <!--  <img class="profile-image" *ngIf="student?.student_gender == 'M'" src="assets/icons/student-m.svg"> -->
-                        <img class="profile-image"  src="assets/icons/student-m.svg">
-                        Ranjan Ojha
-                      </td>
-                      <td>756139</td>
-                      <td>CSE</td>
-                     
-                      <td>
-                          <span class="badge status-dropout" >dropout</span>
-                          <!-- <span class="badge status-{{student?.prediction}}" *ngIf="student.prediction">{{student?.prediction}}</span> -->
-               
-                      </td>
-                  </tr>  
-                  <tr class="cursor-pointer">
-                      <td >
-                       <!--  <img class="profile-image" *ngIf="student?.student_gender == 'M'" src="assets/icons/student-m.svg"> -->
-                        <img class="profile-image"  src="assets/icons/student-g.svg">
-                        Seetha Kumar
-                      </td>
-                      <td>756149</td>
-                      <td>CSE</td>
-                     
-                      <td>
-                          <span class="badge status-dropout" >dropout</span>
-                          <!-- <span class="badge status-{{student?.prediction}}" *ngIf="student.prediction">{{student?.prediction}}</span> -->
-               
-                      </td>
-                  </tr>  
-                  <tr class="cursor-pointer">
-                      <td >
-                       <!--  <img class="profile-image" *ngIf="student?.student_gender == 'M'" src="assets/icons/student-m.svg"> -->
-                        <img class="profile-image"  src="assets/icons/student-m.svg">
-                        Sunil Dhananjay
-                      </td>
-                      <td>756100</td>
-                      <td>CSE</td>
-                     
-                      <td>
-                          <span class="badge status-dropout" >dropout</span>
-                          <!-- <span class="badge status-{{student?.prediction}}" *ngIf="student.prediction">{{student?.prediction}}</span> -->
-               
-                      </td>
-                  </tr> 
-                </tbody>
-              </table>
+              <h4 class="heading">Choose your parameters!</h4>
+              <div class="checks">
+              <input type="checkbox" name="param1" value="University Ranks" checked> University Ranks<br>
+              <input type="checkbox" name="param2" value="Placements" checked> Placements<br>
+              <input type="checkbox" name="param3" value="Enrollments" checked>Enrollments<br>
+              <input type="checkbox" name="param4" value="Higher Studies">Higher Studies<br>
+              <input type="checkbox" name="param5" value="Faculty-Student Ratio">Faculty-Student Ratio<br> 
+          </div>
+            </div>
+
+  <!--       </div>
+      </div> -->
+    </div>
+  </div>
+</div>
+
+<div class="chart-row">
+  <div class="container-fluid">
+    <div class="row chart-row-inside">
+      <div class="col col-12 col-md-6">
+        <div class="card chart-container" [@cardAnimation1]>
+          <div class="card-header">
+            <span class="text">
+               Placements in Top 5 colleges
+            </span>
+          </div>
+          <bar-chart></bar-chart>
+        </div>
+      </div>
+      <div class="col col-12 col-md-6">
+        <!-- <div class="card chart-container">
+          <div class="card-header">Chart 2</div>
+           -->
+          <div class="card chart-container" [@cardAnimation2]>
+            <div class="card-header">
+              <span class="text">
+                 Enrollments in Top 5 colleges
+              </span>
+            </div>
+            <pie></pie>
+          </div>
+        </div>
+              
             </div>
 
   <!--       </div>
