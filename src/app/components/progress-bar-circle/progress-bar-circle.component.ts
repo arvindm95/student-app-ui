@@ -26,11 +26,11 @@ export class ProgressBarCircleComponent implements OnInit {
         } else if (value < 50) {
             this.chartColor = this.chartColorLib['warning'];
         } else if (value <= 70) {
-            this.chartColor = this.chartColorLib['success'];
-        } else if (value <= 80) {
             this.chartColor = this.chartColorLib['warning'];
+        } else if (value <= 80) {
+            this.chartColor = this.chartColorLib['success'];
         } else if (value <= 100) {
-            this.chartColor = this.chartColorLib['danger'];
+            this.chartColor = this.chartColorLib['success'];
         }
         this.value = +value;
     }

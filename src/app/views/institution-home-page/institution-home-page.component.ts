@@ -133,7 +133,11 @@ export class InstitutionHomepage implements OnInit {
 
   redirectToInstitution() {
     setTimeout(() => {
-      this.router.navigateByUrl('/app/students-list');
+     // this.router.navigateByUrl('/app/students-list');
+    /*  if(document.getElementById('checkboxOne')['value'] == "checked"){
+      this.router.navigate(['/app/students-list',true,false,false,false]);
+     } */
+      this.router.navigate(['/app/students-list'])
     }, 5000);
 
   }
