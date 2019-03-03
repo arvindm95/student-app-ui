@@ -28,6 +28,7 @@ export class InstitutionHomepage implements OnInit {
   showLoader: boolean;
   locationTags: any = [];
   locationOptions: any = [
+    'India',
     'Chennai',
     'Delhi',
     'Jalandhar',

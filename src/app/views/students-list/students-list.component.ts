@@ -52,18 +52,18 @@ export class StudentsListComponent implements OnInit {
     this.firstTime = localStorage.getItem('firstTime');
     if(this.firstTime ==1){
       this.getDataBasedOnAll();
-      this.firstTime == 2;
+     // this.firstTime == 2;
       localStorage.setItem('firstTime', '2');
     }else if(this.firstTime == 2){
       this.getDataBasedOnMultiple();
       localStorage.setItem('firstTime', '3');
     }
-    else if(this.firstTime == 3){
+    /* else if(this.firstTime == 3){
       this.getDataBasedOnMultiple2();
       localStorage.setItem('firstTime', '1');
-    }else{
-      this.getDataBasedOnMultiple();
-      localStorage.setItem('firstTime', '3');
+    } */else{
+      this.getDataBasedOnMultiple2();
+      localStorage.setItem('firstTime', '1');
     }
     
 
@@ -350,7 +350,7 @@ export class StudentsListComponent implements OnInit {
   }
 
   getDataBasedOnMultiple(){
-    this.service.get('/rest/university/multiple?edu=true&research=true&infra=true').then((data) => {
+    this.service.get('/rest/university/edu').then((data) => {
      
       this.institutionList = data;
      
@@ -361,7 +361,7 @@ export class StudentsListComponent implements OnInit {
   }
 
   getDataBasedOnMultiple2(){
-    this.service.get('/rest/university/multiple?research=true&infra=true').then((data) => {
+    this.service.get('/rest/university/research').then((data) => {
      
       this.institutionList = data;
      
