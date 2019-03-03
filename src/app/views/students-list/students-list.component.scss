@@ -4,6 +4,7 @@
         display: flex;
         align-items: center;
         .tabs-holder{
+            padding-left: 10px;
             display: flex;
             margin-bottom: 0;
             .tab{
@@ -42,3 +43,86 @@
 .align-center{
     text-align: center;
 }
+
+.map-wrapper{
+    height: calc(100vh - 140px);
+    position: relative;
+  .map-area{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+    agm-map {
+        height: 500px;
+      //  position: absolute;
+      //  bottom: 0px;
+      }
+
+}
+
+.ranking-holder{
+    display: flex;
+    position: relative;
+    width: 100%;
+    .left-section{
+        flex: 1;
+        transition: 250ms ease-in;
+    }
+
+    .right-section{
+        flex: 0;
+        max-width: 900px;
+        transition: 250ms ease-in;
+        &.show{
+            flex: 1;
+        }
+        .header{
+            font-size: 18px;
+            font-weight: 400;
+            padding: 20px;
+            color: #555;
+        }
+
+        .close-icon{
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            cursor: pointer;
+            .close-image{
+                width: 40px;
+                height: auto;
+            }
+        }
+    }
+}
+
+
+  .progress-container{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    .progress-card{
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 200px;
+        height: 130px;
+        .text{
+            font-weight: 400;
+            padding-top: 10px;
+            font-size: 16px;
+        }
+    }
+  }
+  
+  .tr-selected{
+      background: #e2e4ef !important;
+      td{
+          color: #333;
+      }
+  }
+

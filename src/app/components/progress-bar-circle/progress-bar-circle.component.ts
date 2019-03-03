@@ -120,7 +120,7 @@ export class ProgressBarCircleComponent implements OnInit {
                     color: this.chartColor,
                     dataLabels: {
                         useHTML: true,
-                        format: this.showPercentage ? '<div style="text-align:center; margin-top:-18px;"><span style="font-weight:400;font-size:11px;color:' + '#555' + '">{y}%</span><br/>' : ''
+                        format: this.showPercentage ? '<div style="text-align:center; margin-top:-18px;"><span style="font-weight:400;font-size:12px;color:' + '#555' + '">{y}%</span><br/>' : ''
                     }
                 }]
             }]

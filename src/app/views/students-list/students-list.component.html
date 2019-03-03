@@ -1,57 +1,99 @@
-
 <div class="container-fluid">
-    
-    <div class="row profile-navbar">
-      <div class="col-md-8 ml-auto">
-        <div class="profile-tabs">
-          <ul class="tabs-holder">
-            <li class="tab"><a href="#" [routerLink]="['/app/dashboard']">Dashboard</a></li>
-            <li class="tab"><a href="#" class="selected" [routerLink]="['/app/students-list']">Students List</a></li>
-            <!-- <li class="tab"><a href="#" [routerLink]="['/app/profile']">Profile</a></li> -->
-          </ul>
-        </div>
+
+  <div class="row profile-navbar">
+    <div class="col-md-12 ml-auto padding-0">
+      <div class="profile-tabs">
+        <ul class="tabs-holder">
+          <li class="tab"><a href="#" [routerLink]="['/app/dashboard']">Dashboard</a></li>
+          <li class="tab"><a href="#" class="selected" [routerLink]="['/app/students-list']">Institutions</a></li>
+          <!-- <li class="tab"><a href="#" [routerLink]="['/app/profile']">Profile</a></li> -->
+        </ul>
       </div>
     </div>
-    
-    
-      <div class="row mb-4">
-       
-    
-        <div class="col-md-12" [@cardAnimation1]>
-          <div class="card table-wrapper mt-4">
-            <h4 class="heading">Students List</h4>
-            <table class="table">
-              <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Roll number</th>
-                    <th>Department</th>
-                    <th>Email</th>
-                    <th>Status</th>
-                </tr>
-                
-              </thead>
-              <tbody>
-                <tr class="cursor-pointer" *ngFor="let student of studentsListFinal; let i = index" (click)="openProfile(student)">
-                    <td >
-                      <img class="profile-image" *ngIf="student?.student_gender == 'M'" src="assets/icons/student-m.svg">
-                      <img class="profile-image" *ngIf="student?.student_gender == 'F'" src="assets/icons/student-g.svg">
-                      {{student?.student_first_name}} {{student?.student_last_name}}
-                    </td>
-                    <td>{{student?.student_regno}}</td>
-                    <td>{{student?.student_department}}</td>
-                    <td>{{student?.student_email}}</td>
-                    <td>
-                      <img class="align-center" src="assets/loader-heavy.svg" *ngIf="!student.prediction" height="30" width="30">
-                        <span class="badge status-{{student?.prediction}}" *ngIf="student.prediction">{{student?.prediction}}</span>
-                      <!-- <span class="badge status-dropout" *ngIf="i > 10 && i<= 20">Dropout</span>
-                      <span class="badge status-pg" *ngIf="i <= 10">PG</span>
-                      <span class="badge status-nothing" *ngIf="i > 20">Job</span> -->
-                    </td>
-                </tr>  
-              </tbody>
-            </table>
+  </div>
+
+
+  <div class="row mb-4">
+
+
+    <div class="ranking-holder">
+
+
+      <div class="left-section pl-4 pr-4" [@cardAnimation1]>
+        <div class="card table-wrapper mt-4">
+          <h4 class="heading">Institutions</h4>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Code</th>
+                <th>Location</th>
+                <th>Rank</th>
+
+              </tr>
+
+            </thead>
+            <tbody>
+              <tr class="cursor-pointer" *ngFor="let institution of institutionList; let i = index"
+                (click)="openDetailsOnRight(institution)" [class.tr-selected]="selectedInstitution?.name == institution.name">
+                <td>
+                  <img class="profile-image"
+                    src="assets/icons/i{{(i+1)%7}}.svg">
+                  <img class="profile-image" *ngIf="institution?.student_gender == 'F'"
+                    src="assets/icons/student-g.svg">
+                  {{institution?.name}}
+                </td>
+                <td>{{institution?.code}}</td>
+                <td>{{institution?.location}}</td>
+                <td>{{institution?.rank}}</td>
+                <!--  <td>
+                  <img class="align-center" src="assets/loader-heavy.svg" *ngIf="!student.prediction" height="30"
+                    width="30">
+                  <span class="badge status-{{student?.prediction}}"
+                    *ngIf="student.prediction">{{student?.prediction}}</span>
+                  
+                </td> -->
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="right-section padding-0" [class.show]="isRightSectionOpen">
+        <div class="card margin-0 map-wrapper" *ngIf="isRightSectionOpen" [@slideInFromRight]>
+          <div class="close-icon" (click)="closeDetailsOnRight()" *ngIf="isRightSectionOpen">
+            <img class="close-image" src="assets/icons/close.svg">
           </div>
+
+          <div class="header">
+            {{selectedInstitution?.name}}
+          </div>
+          <div class="progress-container">
+              <div class="progress-card" *ngFor="let parameter of parameters">
+                  <okr-progress-bar-circle [setValue]="parameter?.value"></okr-progress-bar-circle>
+                  <h5 class="text">{{parameter?.name}}</h5>
+              </div>
+              
+            </div>
+
+          <div class="map-area">
+            <agm-map *ngFor="let data of location; let i=index" [latitude]="data.lat" [longitude]="data.lng">
+              <agm-marker *ngFor="let data of location; let i=index" [latitude]="data.lat" [longitude]="data.lng">
+              </agm-marker>
+            </agm-map>
+          </div>
+
+          
+
+
+
+
         </div>
+
+
       </div>
     </div>
+
+
+  </div>
+</div>

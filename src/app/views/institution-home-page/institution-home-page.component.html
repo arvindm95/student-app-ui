@@ -1,0 +1,43 @@
+<div class="container-fluid">
+
+  <div class="container main-page-area">
+    <img src="assets/logo.png" width="120px" height="auto">
+    <h5 class="header">PROPHET AI</h5>
+  </div>
+
+  <div class="container filter-area">
+
+    <div class="question" [@cardAnimation5] *ngIf="!isProcessing">
+      <h5 class="heading">Filters</h5>
+      <ul class="ks-cboxtags mt-4">
+        <li>
+          <input type="checkbox" id="checkboxOne" value="Education">
+          <label for="checkboxOne">Education</label>
+        </li>
+        <li><input type="checkbox" id="checkboxTwo" value="Entrepreneurship"><label for="checkboxTwo">
+            Entrepreneurship</label></li>
+        <li><input type="checkbox" id="checkboxThree" value="Research"><label for="checkboxThree">Research</label>
+        </li>
+        <li><input type="checkbox" id="checkboxFour" value="Infrastructure"><label
+            for="checkboxFour">Infrastructure</label>
+        </li>
+
+      </ul>
+      <div class="button-holder mt-2 mb-3">
+        <button class="button button-process" (click)="processFilters()">Process</button>
+      </div>
+    </div>
+
+    <div class="loader-wrapper" *ngIf="isProcessing && showLoader" [@fadeIn]>
+      <img src="assets/loader-new.svg" height="100" width="auto">
+      <h5 class="text">Processing data..</h5>
+    </div>
+
+
+
+  </div>
+
+
+
+
+</div>
