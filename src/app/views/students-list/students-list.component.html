@@ -37,13 +37,12 @@
             </thead>
             <tbody>
               <tr class="cursor-pointer" *ngFor="let institution of institutionList; let i = index"
-                (click)="openDetailsOnRight(institution)" [class.tr-selected]="selectedInstitution?.name == institution.name">
+                (click)="openDetailsOnRight(institution)" [class.tr-selected]="selectedInstitution?.university == institution.university">
                 <td>
                   <img class="profile-image"
                     src="assets/icons/i{{(i+1)%7}}.svg">
-                  <img class="profile-image" *ngIf="institution?.student_gender == 'F'"
-                    src="assets/icons/student-g.svg">
-                  {{institution?.name}}
+                  
+                  {{institution?.university}}
                 </td>
                 <td>{{institution?.code}}</td>
                 <td>{{institution?.location}}</td>
@@ -68,12 +67,24 @@
           </div>
 
           <div class="header">
-            {{selectedInstitution?.name}}
+            {{selectedInstitution?.university}}
           </div>
-          <div class="progress-container">
-              <div class="progress-card" *ngFor="let parameter of parameters">
-                  <okr-progress-bar-circle [setValue]="parameter?.value"></okr-progress-bar-circle>
-                  <h5 class="text">{{parameter?.name}}</h5>
+          <div class="progress-container" *ngIf="selectedInstitution">
+              <div class="progress-card" >
+                  <okr-progress-bar-circle [setValue]="roundOff10(selectedInstitution?.stratio)"></okr-progress-bar-circle>
+                  <h5 class="text">Education</h5>
+              </div>
+              <div class="progress-card" >
+                  <okr-progress-bar-circle [setValue]="roundOff100(selectedInstitution?.placementRatio)"></okr-progress-bar-circle>
+                  <h5 class="text">Entrepreneurship</h5>
+              </div>
+              <div class="progress-card" >
+                  <okr-progress-bar-circle [setValue]="roundOff10(selectedInstitution?.phdratio)"></okr-progress-bar-circle>
+                  <h5 class="text">Research</h5>
+              </div>
+              <div class="progress-card" >
+                  <okr-progress-bar-circle [setValue]="selectedInstitution?.infrastructure"></okr-progress-bar-circle>
+                  <h5 class="text">Infrastructure</h5>
               </div>
               
             </div>

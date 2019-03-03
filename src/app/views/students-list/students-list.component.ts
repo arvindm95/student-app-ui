@@ -31,6 +31,8 @@ export class StudentsListComponent implements OnInit {
   parameters: any = [];
   selectedInstitution: any;
   isAdmin: any;
+
+  firstTime: any = 1;
   constructor(private service: HttpService, private route: ActivatedRoute, private router: Router, private _notificationsService: NotificationsService) {
 
     this.isAdmin = localStorage.getItem("isAdmin");
@@ -42,10 +44,30 @@ export class StudentsListComponent implements OnInit {
       this.role = params['role'];
       this.teacherId = params['id'];
       this.count = 0;
-      this.getAllStudents();
+    //  this.getAllStudents();
+
+      
     });
 
-    this.getDataBasedOnAll();
+    this.firstTime = localStorage.getItem('firstTime');
+    if(this.firstTime ==1){
+      this.getDataBasedOnAll();
+      this.firstTime == 2;
+      localStorage.setItem('firstTime', '2');
+    }else if(this.firstTime == 2){
+      this.getDataBasedOnMultiple();
+      localStorage.setItem('firstTime', '3');
+    }
+    else if(this.firstTime == 3){
+      this.getDataBasedOnMultiple2();
+      localStorage.setItem('firstTime', '1');
+    }else{
+      this.getDataBasedOnMultiple();
+      localStorage.setItem('firstTime', '3');
+    }
+    
+
+
   }
   getAllStudents() {
     // this.service.get('/student/all').then((data)=>{
@@ -71,7 +93,7 @@ export class StudentsListComponent implements OnInit {
       }
     ];
 
-    this.institutionList = [{
+   /*  this.institutionList = [{
       'name': 'Indian Institute of Science',
       'location': 'Bangalore',
       'rank': '1',
@@ -222,7 +244,7 @@ export class StudentsListComponent implements OnInit {
             }
           ]
         }
-  ];
+  ]; */
 
     this.studentsListFinal = this.studentsList/* .slice(0,20) */;
     this.location = [{ lat: 11.059821, lng: 78.387451 }];
@@ -291,11 +313,15 @@ export class StudentsListComponent implements OnInit {
   openDetailsOnRight(institution) {
 
     this.isRightSectionOpen = true;
-    this.location = [{ lat: institution.latitude, lng: institution.longitude }];
+    this.location = [{ lat: Number(institution.latitude), lng: Number(institution.longitude) }];
     
-    this.parameters = institution['parameters'];
+  //  this.parameters = institution['parameters'];
 
-    this.selectedInstitution = institution;
+    this.selectedInstitution = null;
+    setTimeout(() => {
+      this.selectedInstitution = institution;
+    }, 0);
+    
 
   }
 
@@ -315,12 +341,44 @@ export class StudentsListComponent implements OnInit {
   getDataBasedOnAll(){
     this.service.get('/rest/university/all').then((data) => {
      
-      
+      this.institutionList = data;
      
     }).catch((error) => {
 
     });
     
   }
+
+  getDataBasedOnMultiple(){
+    this.service.get('/rest/university/multiple?edu=true&research=true&infra=true').then((data) => {
+     
+      this.institutionList = data;
+     
+    }).catch((error) => {
+
+    });
+    
+  }
+
+  getDataBasedOnMultiple2(){
+    this.service.get('/rest/university/multiple?research=true&infra=true').then((data) => {
+     
+      this.institutionList = data;
+     
+    }).catch((error) => {
+
+    });
+    
+  }
+
+  roundOff10(value){
+
+    return Math.round(value*10);
+  }
+  roundOff100(value){
+
+    return Math.round(value*100);
+  }
+
 
 }
