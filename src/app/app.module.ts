@@ -18,6 +18,8 @@ import { NotificationsService } from 'angular2-notifications';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { HttpService } from './services/http/http.services';
 import { FormsModule } from '@angular/forms';
+import { BarChartComponent } from './components/bar-chart/bar-chart.component';
+import { PieComponent } from './components/pie/pie.component';
 import { AgmCoreModule } from '@agm/core';
 import { NgxCarouselModule } from 'ngx-carousel';
 import { TagsInputModule } from 'ngx-tags-input/dist';
@@ -53,6 +55,8 @@ const appRoutes: Routes = [
     StudentsListComponent,
     DashboardChartComponent,
     ProgressBarCircleComponent,
+    BarChartComponent,
+    PieComponent,
     InstitutionHomepage
   ],
   imports: [

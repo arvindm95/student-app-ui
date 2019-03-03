@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Chart } from 'angular-highcharts';
+import { chart } from 'highcharts';
 
 declare var require: any;
 
@@ -25,15 +26,12 @@ export class DashboardChartComponent implements OnInit {
             },
             yAxis: {
                 title: {
-                    text: 'Pass percentage',
+                    text: 'University Ranks',
                     useHTML: true
                 }
             },
             xAxis: {
-                title: {
-                    text: 'Semester',
-                    useHTML: true
-                }
+                    categories: ['University of Hyderabad', 'JNU Delhi', 'AU Chennai', 'IISC Blore', 'BHU Varanasi'],
             },
             credits: {
                 enabled: false
@@ -42,7 +40,7 @@ export class DashboardChartComponent implements OnInit {
                 enabled: false
             },
             series: [{
-                data: [[1, 50],[2, 80],[3, 60],[4,89],[5,70],[6,90]]
+                data: [['University of Hyderabad', 50],['JNU Delhi', 80],['AU Chennai', 60],['IISC Blore',89],['BHU Varanasi',70]]
             }]
         });
 
