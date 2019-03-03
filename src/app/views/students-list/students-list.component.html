@@ -55,6 +55,11 @@
                   
                 </td> -->
               </tr>
+              <tr *ngIf="institutionList?.length == 0 && isLoaded">
+                <td colspan="4" class="table-no-data">
+                  No data available to display
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>
