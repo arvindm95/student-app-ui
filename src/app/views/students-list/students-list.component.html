@@ -159,7 +159,7 @@
           <div class="header">
             {{selectedInstitution?.university}}
           </div>
-          <div class="progress-container mt-4" *ngIf="selectedInstitution">
+          <div class="progress-container special-margin" *ngIf="selectedInstitution">
               <div class="progress-card" >
                   <okr-progress-bar-circle [setValue]="selectedInstitution?.education" [size]="85"></okr-progress-bar-circle>
                   <h5 class="text">Education</h5>
