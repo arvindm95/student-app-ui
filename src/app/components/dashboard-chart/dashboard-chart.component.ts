@@ -25,13 +25,15 @@ export class DashboardChartComponent implements OnInit {
                 text:''
             },
             yAxis: {
+                min:0,
+                max:100,
                 title: {
-                    text: 'University Ranks',
+                    text: 'Percentage(%)',
                     useHTML: true
                 }
             },
             xAxis: {
-                    categories: ['University of Hyderabad', 'JNU Delhi', 'AU Chennai', 'IISC Blore', 'BHU Varanasi'],
+                    categories: ['Homi Baba National', 'IISC', 'King George\'s Medical University', 'Panjab Agriculture University', 'Jamia Millia Islamia'],
             },
             credits: {
                 enabled: false
@@ -40,7 +42,7 @@ export class DashboardChartComponent implements OnInit {
                 enabled: false
             },
             series: [{
-                data: [['University of Hyderabad', 50],['JNU Delhi', 80],['AU Chennai', 60],['IISC Blore',89],['BHU Varanasi',70]]
+                data: [['Homi Baba National', 85],['IISC', 84],['King George\'s Medical University', 83],['Panjab Agriculture University',80],['Jamia Millia Islamia',79]]
             }]
         });
 
