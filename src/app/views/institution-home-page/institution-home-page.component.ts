@@ -146,7 +146,7 @@ export class InstitutionHomepage implements OnInit {
      console.log(this.educationSearch,this.entSearch,this.rSearch,this.infraSearch, this.locationTags);
      
      this.router.navigate(['app/students-list',this.educationSearch,this.entSearch,this.rSearch,this.infraSearch, JSON.stringify(this.locationTags)]);
-    }, 1000);
+    }, 3000);
 
   }
 
