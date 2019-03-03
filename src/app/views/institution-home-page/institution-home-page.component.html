@@ -5,7 +5,7 @@
     <h5 class="header">PROPHET AI</h5>
 
     <p class="description">
-       Cloud based AI solution to Rank, Predict and Visualize Institutions in India
+      Cloud based AI solution to Rank, Predict and Visualize Institutions in India
     </p>
   </div>
 
@@ -14,16 +14,22 @@
     <div class="question" [@cardAnimation5] *ngIf="!isProcessing">
       <h5 class="heading">Filters</h5>
       <div class="input-tags">
-          <tags-input class="form-control input-lg" placeholder="Location" (onTagsChanged)="onTagsChanged($event)" [removeLastOnBackspace]="removeLastOnBackspace" [(ngModel)]="locationTags" [options]="locationOptions" name="tags" autocomplete="off"></tags-input>
+        <form autocomplete="off">
+          <tags-input class="form-control input-lg" placeholder="Location" (onTagsChanged)="onTagsChanged($event)"
+            [removeLastOnBackspace]="removeLastOnBackspace" [(ngModel)]="locationTags" [options]="locationOptions"
+            name="tags" autocomplete="off"></tags-input>
+        </form>
       </div>
       <ul class="ks-cboxtags mt-3">
         <li>
           <input type="checkbox" id="checkboxOne" value="Education" [(ngModel)]="educationSearch">
           <label for="checkboxOne">Education</label>
         </li>
-        <li><input type="checkbox" id="checkboxTwo" value="Entrepreneurship" [(ngModel)]="entSearch"><label for="checkboxTwo">
+        <li><input type="checkbox" id="checkboxTwo" value="Entrepreneurship" [(ngModel)]="entSearch"><label
+            for="checkboxTwo">
             Entrepreneurship</label></li>
-        <li><input type="checkbox" id="checkboxThree" value="Research" [(ngModel)]="rSearch"><label for="checkboxThree">Research</label>
+        <li><input type="checkbox" id="checkboxThree" value="Research" [(ngModel)]="rSearch"><label
+            for="checkboxThree">Research</label>
         </li>
         <li><input type="checkbox" id="checkboxFour" value="Infrastructure" [(ngModel)]="infraSearch"><label
             for="checkboxFour">Infrastructure</label>
