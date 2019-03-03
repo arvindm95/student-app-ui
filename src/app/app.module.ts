@@ -20,6 +20,7 @@ import { HttpService } from './services/http/http.services';
 import { FormsModule } from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
 import { NgxCarouselModule } from 'ngx-carousel';
+import { TagsInputModule } from 'ngx-tags-input/dist';
 
 
 const appRoutes: Routes = [
@@ -62,6 +63,7 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     CommonModule,
     NgxCarouselModule,
+    TagsInputModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: '  AIzaSyCMTH2klaSDgxN83v_ZPDHUn3l34i7h3I8  '
     }),

@@ -126,3 +126,14 @@
       }
   }
 
+.upload-button{
+    background: #2980b9;
+    width: 140px;
+    position: absolute;
+    right: 10px;
+    top: 12px;
+
+    &.transparent{
+        opacity: 0;
+    }
+}

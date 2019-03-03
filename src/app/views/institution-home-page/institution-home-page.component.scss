@@ -48,7 +48,7 @@
 
 .filter-area{
 
-    height: calc(100vh - 370px);
+    //height: calc(100vh - 370px);
     ul.ks-cboxtags {
         list-style: none;
         padding: 20px;
@@ -99,8 +99,8 @@
     }
     
     ul.ks-cboxtags li input[type="checkbox"]:checked + label {
-        border: 2px solid #1bdbf8;
-        background-color: #12bbd4;
+        border: 2px solid #2c3e50;
+        background-color: #2980b9;
         color: #fff;
         transition: all .2s;
     }
@@ -113,7 +113,7 @@
       opacity: 0;
     }
     ul.ks-cboxtags li input[type="checkbox"]:focus + label {
-      border: 2px solid #e9a1ff;
+      border: 2px solid #2c3e50;
     }
       }
 
@@ -182,4 +182,17 @@
     .header{
         font-size: 26px;
     }
+
+    .description{
+        font-size: 18px;
+        font-weight: 300;
+        color: #666;
+        text-align: center;
+    }
 }      
+
+typeahead-container{
+    &.dropdown-menu{
+        width: 300px;
+    }
+}

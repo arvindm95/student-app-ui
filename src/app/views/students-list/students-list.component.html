@@ -22,6 +22,8 @@
       <div class="left-section pl-4 pr-4" [@cardAnimation1]>
         <div class="card table-wrapper mt-4">
           <h4 class="heading">Institutions</h4>
+          <button *ngIf="isAdmin == 'true'" class="button upload-button">Upload Data</button>
+          <input *ngIf="isAdmin == 'true'" type="file" class="button upload-button transparent" (change) = "uploadFile()" >
           <table class="table">
             <thead>
               <tr>

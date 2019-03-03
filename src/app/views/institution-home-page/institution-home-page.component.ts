@@ -20,27 +20,53 @@ import { Router } from '@angular/router';
 })
 export class InstitutionHomepage implements OnInit {
 
+  isAdmin: any;
   carouselBanner: any;
   isLoaded: boolean;
   currentQuestionNo: any;
-  isProcessing:boolean;
-  showLoader:boolean;
+  isProcessing: boolean;
+  showLoader: boolean;
+  locationTags: any = [];
+  locationOptions: any = [
+    'Chennai',
+    'Delhi',
+    'Jalandhar',
+    'Ahmedabad',
+    'Noida',
+    'Pondicherry',
+    'Trivandrum',
+    'Banglore',
+    'Mysore',
+    'Amritsar',
+    'Chandigarh',
+    'Calcutta',
+    'Madurai',
+    'Coimbatore',
+    'Phagwara',
+    'Itarsi',
+    'Bhopal',
+    'Mumbai',
+    'Kanpur',
+    'Kharagpur',
+    'Hyderabad'
+
+  ];
 
   questionsMock: any = [
     {
       'questionNo': 1,
       'question': ''
-      
+
     }
   ];
 
   constructor(private service: HttpService, private route: ActivatedRoute, private router: Router) {
     this.setCarouselProperty();
 
-
+    this.isAdmin = localStorage.getItem("isAdmin");
   }
 
-  ngOnInit(){
+  ngOnInit() {
 
     setTimeout(() => {
       this.isLoaded = true;
@@ -91,25 +117,28 @@ export class InstitutionHomepage implements OnInit {
     }
   }
 
-  nextQuestion(){
-    this.currentQuestionNo++;    
+  nextQuestion() {
+    this.currentQuestionNo++;
   }
 
-  processFilters(){
-    this.isProcessing=true;
+  processFilters() {
+    this.isProcessing = true;
 
     setTimeout(() => {
       this.showLoader = true;
-      this.redirectToInstitution();    
+      this.redirectToInstitution();
 
     }, 500);
   }
 
-  redirectToInstitution(){
+  redirectToInstitution() {
     setTimeout(() => {
       this.router.navigateByUrl('/app/students-list');
     }, 5000);
-   
+
   }
-  
+
+  onTagsChanged(event) {
+
+  }
 }

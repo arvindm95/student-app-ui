@@ -34,19 +34,15 @@ export class LoginComponent implements OnInit {
       'role_name': 'student',
       'user_id': 'username'
     }
-    //  this.profileDetails = data;
-    if (data['role_name'] == 'student') {
-      this.loginTo('student', data['user_id']);
-    } else if (data['role_name'] == 'teacher') {
-      this.loginTo('teacher', data['user_id']);
-    } else if (data['role_name'] == 'institute') {
-      this.loginTo('institute', data['user_id']);
+
+    if ((this.username == "admin@aicte.com" || this.username == "superadmin@aicte.com") && this.password == "asdf1234") {
+      localStorage.setItem("isAdmin", "true");
+      this.router.navigateByUrl("app/institution/home");
+    }else{
+      this._notificationsService.error("Error", "Invalid user credentials!!")
     }
 
-    // }).catch((error)=>{
-    // //  this.loginTo('teacher',1);
-    // this._notificationsService.error('Error', 'Incorrect user credentials');
-    // });
+
   }
   loginTo(role, id) {
     if (role == 'student') {

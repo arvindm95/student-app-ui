@@ -1,15 +1,22 @@
 <div class="container-fluid">
 
-  <div class="container main-page-area">
+  <div class="container main-page-area" [@fadeIn2]>
     <img src="assets/logo.png" width="120px" height="auto">
     <h5 class="header">PROPHET AI</h5>
+
+    <p class="description">
+        This framework outlines a methodology to rank institutions across the country and also predict the future ranks. The parameters broadly cover “Education,” “Entrepreneurship,” “Research,” “Infrastructure”. This body of work promotes development in the country in a coordinated and integrated manner.
+    </p>
   </div>
 
   <div class="container filter-area">
 
     <div class="question" [@cardAnimation5] *ngIf="!isProcessing">
       <h5 class="heading">Filters</h5>
-      <ul class="ks-cboxtags mt-4">
+      <div class="input-tags">
+          <tags-input class="form-control input-lg" placeholder="Location" (onTagsChanged)="onTagsChanged($event)" [removeLastOnBackspace]="removeLastOnBackspace" [(ngModel)]="locationTags" [options]="locationOptions" name="tags"></tags-input>
+      </div>
+      <ul class="ks-cboxtags mt-3">
         <li>
           <input type="checkbox" id="checkboxOne" value="Education">
           <label for="checkboxOne">Education</label>

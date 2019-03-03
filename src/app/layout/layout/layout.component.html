@@ -8,7 +8,7 @@
       <div class="icons-holder">
         
 
-        <div class="dropdown">
+        <div class="dropdown" *ngIf="isAdmin == 'true'">
             <!-- <button class="btn btn-secondary dropdown-toggle" type="button" >
               Dropdown button
             </button> -->
@@ -16,10 +16,11 @@
                 <img src="assets/icons/student-m.svg" height="30px" width="auto" >
             </a>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="#">Logout</a>
+              <a class="dropdown-item" href="#" (click)="logout()">Logout</a>
               
             </div>
           </div>
+          <img *ngIf="isAdmin != 'true'" src="assets/icons/login1.svg" height="35px" width="auto" (click)="redirectToLogin()">
       </div>
     
 

@@ -8,6 +8,7 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { HttpService } from '../../services/http/http.services';
 import { Router } from '@angular/router';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-students-list',
@@ -29,9 +30,10 @@ export class StudentsListComponent implements OnInit {
   institutionList: any = [];
   parameters: any = [];
   selectedInstitution: any;
-  constructor(private service: HttpService, private route: ActivatedRoute, private router: Router) {
+  isAdmin: any;
+  constructor(private service: HttpService, private route: ActivatedRoute, private router: Router, private _notificationsService: NotificationsService) {
 
-
+    this.isAdmin = localStorage.getItem("isAdmin");
 
   }
 
@@ -42,6 +44,8 @@ export class StudentsListComponent implements OnInit {
       this.count = 0;
       this.getAllStudents();
     });
+
+    this.getDataBasedOnAll();
   }
   getAllStudents() {
     // this.service.get('/student/all').then((data)=>{
@@ -298,6 +302,25 @@ export class StudentsListComponent implements OnInit {
   closeDetailsOnRight() {
     this.isRightSectionOpen = false;
     this.selectedInstitution = null;
+  }
+
+  uploadFile(){
+    this._notificationsService.success("In Progress", "Uploading file in background progress");
+
+    setTimeout(() => {
+      this._notificationsService.success("Success", "File uploaded successfully!!");
+    }, 5000);
+  }
+
+  getDataBasedOnAll(){
+    this.service.get('/rest/university/all').then((data) => {
+     
+      
+     
+    }).catch((error) => {
+
+    });
+    
   }
 
 }
