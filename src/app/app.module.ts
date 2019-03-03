@@ -23,6 +23,7 @@ import { PieComponent } from './components/pie/pie.component';
 import { AgmCoreModule } from '@agm/core';
 import { NgxCarouselModule } from 'ngx-carousel';
 import { TagsInputModule } from 'ngx-tags-input/dist';
+import { BubbleComponent } from './components/bubble/bubble.component';
 
 
 const appRoutes: Routes = [
@@ -58,7 +59,8 @@ const appRoutes: Routes = [
     ProgressBarCircleComponent,
     BarChartComponent,
     PieComponent,
-    InstitutionHomepage
+    InstitutionHomepage,
+    BubbleComponent
   ],
   imports: [
     HttpClientModule,

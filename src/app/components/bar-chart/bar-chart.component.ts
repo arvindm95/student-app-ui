@@ -22,12 +22,12 @@ export class BarChartComponent implements OnInit {
       },
       yAxis: {
           title: {
-              text: 'Placements',
+              text: 'Percentage(%)',
               useHTML: true
           }
       },
       xAxis: {
-        categories: ['IISC Blore', 'JNU Delhi', 'BHU Varanasi', 'AU Chennai', 'University of Hyderabad'],
+        categories: ['JNU', 'Bharat Institute of Scieneces', 'Tata Institute of Social Sciences', 'Shiv Nadar University', 'Jamia Millia Islamia University'],
 },
       credits: {
           enabled: false
@@ -36,7 +36,7 @@ export class BarChartComponent implements OnInit {
           enabled: false
       },
       series: [{
-        data: [['IISC Blore' , 90],['JNU Delhi', 80],['BHU Varanasi', 70],['AU Chennai',60],['University of Hyderabad',50]]
+        data: [['JNU' , 80],['Bharat Institute of Scieneces', 79],['Tata Institute of Social Sciences', 72],['Shiv Nadar University',71],['Jamia Millia Islamia University',68]]
     }]
   })
  }

@@ -12,54 +12,33 @@ export class PieComponent implements OnInit {
 
   ngOnInit() {
     this.chart = new Chart({
-      chart: {
-          renderTo: 'container2',
-          type: 'pie',
-          height: '250'
-      },
-      title:{
-          text:''
-      },
-      credits: {
-          enabled: false
-      },
-      tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-    },
-      legend: {
-          enabled: true
-      },
-      plotOptions: {
-        pie: {
-            allowPointSelect: true,
-            cursor: 'pointer',
-            dataLabels: {
-                enabled: false
-            },
-            showInLegend: true
-        }
-    },
-      series: [{
-        data: [{
-            name: 'IISC Blore',
-            y: 60,
-            sliced: false,
-            selected: true
-        }, {
-            name: 'JNU Delhi',
-            y: 11
-        }, {
-            name: 'BHU Varanasi',
-            y: 10
-        }, {
-            name: 'AU Chennai',
-            y: 4
-        }, {
-            name: 'University of Hyderabad',
-            y: 4
-        }]
-    }]
-  })
+        chart: {
+            renderTo: 'container2',
+            type: 'bar',
+            height: '250'
+        },
+        title:{
+            text:''
+        },
+        yAxis: {
+            title: {
+                text: 'Percentage(%)',
+                useHTML: true
+            }
+        },
+        xAxis: {
+          categories: ['JNU', 'BHU', 'Osmania University', 'Jadavapur University', 'Aligarh University'],
+  },
+        credits: {
+            enabled: false
+        },
+        legend: {
+            enabled: false
+        },
+        series: [{
+          data: [['JNU' , 99],['BHU', 95],['Osmania University', 93],['Jadavapur University',91],['Aligarh University',90]]
+      }]
+    })
   }
 
 }
