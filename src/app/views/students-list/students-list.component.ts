@@ -38,6 +38,13 @@ export class StudentsListComponent implements OnInit {
   rSearch: any;
   infraSearch: any;
   locationTags: any = [];
+  progressStage1: boolean;
+  progressStage2: boolean;
+  progressStage3: boolean;
+  progressStage4: boolean;
+  flag: boolean;
+  studentQuestions: { 'question_description': string; 'question_answer': string; }[];
+  suggestions: any;
   constructor(private service: HttpService, private route: ActivatedRoute, private router: Router, private _notificationsService: NotificationsService) {
 
     this.isAdmin = localStorage.getItem("isAdmin");
@@ -384,7 +391,7 @@ export class StudentsListComponent implements OnInit {
   }
 
   getDataBasedOnMultiple() {
-    this.service.get('/rest/university/edu').then((data) => {
+    this.service.get('/rest/university/all').then((data) => {
 
       this.institutionList = data;
 
@@ -414,5 +421,96 @@ export class StudentsListComponent implements OnInit {
     return Math.round(value * 100);
   }
 
+  showPrediction() {
+    this.progressStage1 = true;
+    this.progressStage2 = false;
+    this.progressStage3 = false;
+    this.progressStage4 = false;
+    setTimeout(() => {
+      this.progressStage1 = false;
+      this.progressStage2 = true;
+      this.progressStage3 = false;
+      this.progressStage4 = false;
+    }, 2000);
+    setTimeout(() => {
+      this.progressStage1 = false;
+      this.progressStage2 = false;
+      this.progressStage3 = true;
+      this.progressStage4 = false;
+    }, 4000);
+    setTimeout(() => {
+      this.progressStage1 = false;
+      this.progressStage2 = false;
+      this.progressStage3 = false;
+      this.progressStage4 = true;
+      this.flag = true;
+    }, 6000);
 
+    // this.service.get('/student/questions/' + this.studentId).then((data) => {
+    // console.log(data);
+
+    let data = [{
+      'question_description': 'Did you choose this course with passion?',
+      'question_answer': 'yes'
+    }, {
+      'question_description': 'Did you choose this course with passion?',
+      'question_answer': 'no'
+    }, {
+      'question_description': 'Did you choose this course with passion?',
+      'question_answer': 'no'
+    }, {
+      'question_description': 'Did you choose this course with passion?',
+      'question_answer': 'yes'
+    }, {
+      'question_description': 'Did you choose this course with passion?',
+      'question_answer': 'yes'
+    }];
+    this.studentQuestions = data;
+    let testData = `{
+        "Q1": [`+ (data[0]['question_answer'] == 'yes' ? 1.0 : 0.0) + `],
+        "Q2": [`+ (data[1]['question_answer'] == 'yes' ? 1.0 : 0.0) + `],
+        "Q3": [`+ (data[2]['question_answer'] == 'yes' ? 1.0 : 0.0) + `],
+        "Q4": [`+ (data[3]['question_answer'] == 'yes' ? 1.0 : 0.0) + `],
+        "Q5": [`+ (data[4]['question_answer'] == 'yes' ? 1.0 : 0.0) + `]  
+    }`;
+    // this.predictCall(testData);
+
+    // }).catch((error) => {
+
+    // });
+
+  }
+
+  generateValues() {
+    let score1, score2, score3, score4;
+    //this.studentQuestions[0]['question_answer'] !=null
+    /* this.studentQuestions.forEach(question => {
+      if(question['question_answer'] != null){
+       score1 = question['question_answer'] == 'yes' ? 1 * 85 : 0;
+      }
+
+      if(question['question_answer'] != null){
+        score2 = question['question_answer'] == 'yes' ? 1 * 64 : 0;
+       }
+      
+    }); */
+    score1 = this.studentQuestions[0]['question_answer'] == 'yes' ? 1 * 65 : 0;
+    score2 = this.studentQuestions[1]['question_answer'] == 'yes' ? 1 * 25 : (score1 / 2 + 10);
+    score3 = this.studentQuestions[2]['question_answer'] == 'yes' ? (1 * 6 + score1) : 0;
+    score4 = this.studentQuestions[3]['question_answer'] == 'yes' ? ((1 * 2) + score3) : 0;
+    this.suggestions = JSON.parse(`[{
+      "field" : "Creativity",
+      "score" : "`+ score1 + `"
+    },{
+      "field" : "Coding concepts",
+      "score" : "`+ score3 + `"
+    },{
+      "field" : "Participation",
+      "score" : "`+ score2 + `"
+    },{
+      "field" : "Communication",
+      "score" : "`+ score4 + `"
+    }]`);
+  }
 }
+
