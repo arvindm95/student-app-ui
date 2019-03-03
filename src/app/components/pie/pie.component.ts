@@ -20,6 +20,7 @@ export class PieComponent implements OnInit {
         title:{
             text:''
         },
+        colors:['#ff5050','#ff5050','#ff5050','#FFFF00','#FFFF00'],
         yAxis: {
             title: {
                 text: 'Percentage(%)',

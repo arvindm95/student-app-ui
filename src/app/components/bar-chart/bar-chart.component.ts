@@ -29,6 +29,7 @@ export class BarChartComponent implements OnInit {
       xAxis: {
         categories: ['JNU', 'Bharat Institute of Scieneces', 'Tata Institute of Social Sciences', 'Shiv Nadar University', 'Jamia Millia Islamia University'],
 },
+    colors:['#4CAF50','#FFFF00','#4CAF50','#FFFF00','#4CAF50'],
       credits: {
           enabled: false
       },
