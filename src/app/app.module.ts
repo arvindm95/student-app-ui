@@ -38,7 +38,7 @@ const appRoutes: Routes = [
         { path: 'profile/:role/:id', component: ProfileComponent },
         { path: 'students-list', component: StudentsListComponent },
         { path: 'students-list/:role/:id', component: StudentsListComponent },
-        { path: 'students-list/:edu/:ent/:res/:infra', component: StudentsListComponent },
+        { path: 'students-list/:edu/:ent/:res/:infra/:location', component: StudentsListComponent },
         { path: 'profile/:role/:id/:teacherId', component: ProfileComponent },
         { path: 'institution/home', component: InstitutionHomepage }
       ]

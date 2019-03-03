@@ -33,6 +33,11 @@ export class StudentsListComponent implements OnInit {
   isAdmin: any;
 
   firstTime: any = 1;
+  educationSearch: any;
+  entSearch: any;
+  rSearch: any;
+  infraSearch: any;
+  locationTags: any = [];
   constructor(private service: HttpService, private route: ActivatedRoute, private router: Router, private _notificationsService: NotificationsService) {
 
     this.isAdmin = localStorage.getItem("isAdmin");
@@ -44,31 +49,60 @@ export class StudentsListComponent implements OnInit {
       this.role = params['role'];
       this.teacherId = params['id'];
       this.count = 0;
-    //  this.getAllStudents();
 
-      
+      this.educationSearch = params['edu'];
+      this.entSearch = params['ent'];
+      this.rSearch = params['res'];
+      this.infraSearch = params['infra'];
+      this.locationTags = JSON.parse(params['location']);
+      //  this.getAllStudents();
+
     });
 
-    this.firstTime = localStorage.getItem('firstTime');
-    if(this.firstTime ==1){
-      this.getDataBasedOnAll();
-     // this.firstTime == 2;
-      localStorage.setItem('firstTime', '2');
-    }else if(this.firstTime == 2){
-      this.getDataBasedOnMultiple();
-      localStorage.setItem('firstTime', '3');
-    }
-    /* else if(this.firstTime == 3){
-      this.getDataBasedOnMultiple2();
-      localStorage.setItem('firstTime', '1');
-    } */else{
-      this.getDataBasedOnMultiple2();
-      localStorage.setItem('firstTime', '1');
-    }
-    
+    /*     this.firstTime = localStorage.getItem('firstTime');
+        if(this.firstTime ==1){
+          this.getDataBasedOnAll();
+         // this.firstTime == 2;
+          localStorage.setItem('firstTime', '2');
+        }else if(this.firstTime == 2){
+          this.getDataBasedOnMultiple();
+          localStorage.setItem('firstTime', '3');
+        }
+       else{
+          this.getDataBasedOnMultiple2();
+          localStorage.setItem('firstTime', '1');
+        } */
 
+    this.getRealInstitutionData();
 
   }
+
+  getRealInstitutionData() {
+
+    let toSend = {};
+    let locationTmp = 'india';
+    console.log(this.locationTags);
+    
+    if(this.locationTags != null && this.locationTags[0]!= null && this.locationTags != '[]'){
+      locationTmp = this.locationTags[0]['displayValue'];
+    }
+    toSend = {
+      "education": this.educationSearch,
+      "research": this.rSearch,
+      "infra": this.infraSearch,
+      "entre": this.entSearch
+    };
+    toSend['location'] = locationTmp;
+    console.log(locationTmp);
+    
+    this.service.post('/rest/university/all', JSON.stringify(toSend)).then((data) => {
+      this.institutionList = data;
+    }).catch(error => {
+
+    });
+  }
+
+
   getAllStudents() {
     // this.service.get('/student/all').then((data)=>{
     //   console.log(data);
@@ -93,158 +127,158 @@ export class StudentsListComponent implements OnInit {
       }
     ];
 
-   /*  this.institutionList = [{
-      'name': 'Indian Institute of Science',
-      'location': 'Bangalore',
-      'rank': '1',
-      'code': '3212',
-      'latitude': 12.95798,
-      'longitude': 77.401207,
-      'parameters': [
-        {
-          'name':'Student teacher Ratio',
-          'value': '50'
-        },
-        {
-          'name':'Patents',
-          'value': '20'
-        },
-        {
-          'name':'Infrastructure',
-          'value': '80'
-        },
-        {
-          'name':'cited papers',
-          'value':'70'
-        },
-        {
-          'name':'Hostel facility',
-          'value':'60'
-        }
-      ]
-    },
-    {
-      'name': 'Jawaharlal Nehru University',
-      'location': 'Delhi',
-      'rank': '2',
-      'code': '4212',
-      'latitude': 26.633243,
-      'longitude': 77.21879,
-      'parameters': [
-        {
-          'name':'Student teacher Ratio',
-          'value': '40'
-        },
-        {
-          'name':'Patents',
-          'value': '60'
-        },
-        {
-          'name':'Infrastructure',
-          'value': '70'
-        },
-        {
-          'name':'cited papers',
-          'value':'75'
-        },
-        {
-          'name':'Hostel facility',
-          'value':'50'
-        }
-      ]
-    },
-    
-    {
-      'name': 'Banaras Hindu University',
-      'location': 'Delhi',
-      'rank': '3',
-      'code': '98745',
-      'latitude': 25.30958,
-      'longitude': 83.00569,
-      'parameters': [
-        {
-          'name':'Student teacher Ratio',
-          'value': '20'
-        },
-        {
-          'name':'Patents',
-          'value': '80'
-        },
-        {
-          'name':'Infrastructure',
-          'value': '60'
-        },
-        {
-          'name':'cited papers',
-          'value':'70'
-        },
-        {
-          'name':'Hostel facility',
-          'value':'60'
-        }
-      ]
-    },
-        {
-          'name': 'Anna University',
-          'location': 'Chennai',
-          'rank': '4',
-          'code': '5212',
-          'latitude': 25.30958,
-          'longitude': 83.00569,
-          'parameters': [
-            {
-              'name':'Student teacher Ratio',
-              'value': '70'
-            },
-            {
-              'name':'Patents',
-              'value': '20'
-            },
-            {
-              'name':'Infrastructure',
-              'value': '80'
-            },
-            {
-              'name':'cited papers',
-              'value':'70'
-            },
-            {
-              'name':'Hostel facility',
-              'value':'40'
-            }
-          ]
-        },
-        {
-          'name': 'University of delhi',
-          'location': 'Delhi',
-          'rank': '5',
-          'code': '7212',
-          'latitude': 28.70702,
-          'longitude': 77.21225,
-          'parameters': [
-            {
-              'name':'Student teacher Ratio',
-              'value': '50'
-            },
-            {
-              'name':'Patents',
-              'value': '70'
-            },
-            {
-              'name':'Infrastructure',
-              'value': '85'
-            },
-            {
-              'name':'cited papers',
-              'value':'60'
-            },
-            {
-              'name':'Hostel facility',
-              'value':'60'
-            }
-          ]
-        }
-  ]; */
+    /*  this.institutionList = [{
+       'name': 'Indian Institute of Science',
+       'location': 'Bangalore',
+       'rank': '1',
+       'code': '3212',
+       'latitude': 12.95798,
+       'longitude': 77.401207,
+       'parameters': [
+         {
+           'name':'Student teacher Ratio',
+           'value': '50'
+         },
+         {
+           'name':'Patents',
+           'value': '20'
+         },
+         {
+           'name':'Infrastructure',
+           'value': '80'
+         },
+         {
+           'name':'cited papers',
+           'value':'70'
+         },
+         {
+           'name':'Hostel facility',
+           'value':'60'
+         }
+       ]
+     },
+     {
+       'name': 'Jawaharlal Nehru University',
+       'location': 'Delhi',
+       'rank': '2',
+       'code': '4212',
+       'latitude': 26.633243,
+       'longitude': 77.21879,
+       'parameters': [
+         {
+           'name':'Student teacher Ratio',
+           'value': '40'
+         },
+         {
+           'name':'Patents',
+           'value': '60'
+         },
+         {
+           'name':'Infrastructure',
+           'value': '70'
+         },
+         {
+           'name':'cited papers',
+           'value':'75'
+         },
+         {
+           'name':'Hostel facility',
+           'value':'50'
+         }
+       ]
+     },
+     
+     {
+       'name': 'Banaras Hindu University',
+       'location': 'Delhi',
+       'rank': '3',
+       'code': '98745',
+       'latitude': 25.30958,
+       'longitude': 83.00569,
+       'parameters': [
+         {
+           'name':'Student teacher Ratio',
+           'value': '20'
+         },
+         {
+           'name':'Patents',
+           'value': '80'
+         },
+         {
+           'name':'Infrastructure',
+           'value': '60'
+         },
+         {
+           'name':'cited papers',
+           'value':'70'
+         },
+         {
+           'name':'Hostel facility',
+           'value':'60'
+         }
+       ]
+     },
+         {
+           'name': 'Anna University',
+           'location': 'Chennai',
+           'rank': '4',
+           'code': '5212',
+           'latitude': 25.30958,
+           'longitude': 83.00569,
+           'parameters': [
+             {
+               'name':'Student teacher Ratio',
+               'value': '70'
+             },
+             {
+               'name':'Patents',
+               'value': '20'
+             },
+             {
+               'name':'Infrastructure',
+               'value': '80'
+             },
+             {
+               'name':'cited papers',
+               'value':'70'
+             },
+             {
+               'name':'Hostel facility',
+               'value':'40'
+             }
+           ]
+         },
+         {
+           'name': 'University of delhi',
+           'location': 'Delhi',
+           'rank': '5',
+           'code': '7212',
+           'latitude': 28.70702,
+           'longitude': 77.21225,
+           'parameters': [
+             {
+               'name':'Student teacher Ratio',
+               'value': '50'
+             },
+             {
+               'name':'Patents',
+               'value': '70'
+             },
+             {
+               'name':'Infrastructure',
+               'value': '85'
+             },
+             {
+               'name':'cited papers',
+               'value':'60'
+             },
+             {
+               'name':'Hostel facility',
+               'value':'60'
+             }
+           ]
+         }
+   ]; */
 
     this.studentsListFinal = this.studentsList/* .slice(0,20) */;
     this.location = [{ lat: 11.059821, lng: 78.387451 }];
@@ -314,14 +348,14 @@ export class StudentsListComponent implements OnInit {
 
     this.isRightSectionOpen = true;
     this.location = [{ lat: Number(institution.latitude), lng: Number(institution.longitude) }];
-    
-  //  this.parameters = institution['parameters'];
+
+    //  this.parameters = institution['parameters'];
 
     this.selectedInstitution = null;
     setTimeout(() => {
       this.selectedInstitution = institution;
     }, 0);
-    
+
 
   }
 
@@ -330,7 +364,7 @@ export class StudentsListComponent implements OnInit {
     this.selectedInstitution = null;
   }
 
-  uploadFile(){
+  uploadFile() {
     this._notificationsService.success("In Progress", "Uploading file in background progress");
 
     setTimeout(() => {
@@ -338,46 +372,46 @@ export class StudentsListComponent implements OnInit {
     }, 5000);
   }
 
-  getDataBasedOnAll(){
+  getDataBasedOnAll() {
     this.service.get('/rest/university/all').then((data) => {
-     
+
       this.institutionList = data;
-     
+
     }).catch((error) => {
 
     });
-    
+
   }
 
-  getDataBasedOnMultiple(){
+  getDataBasedOnMultiple() {
     this.service.get('/rest/university/edu').then((data) => {
-     
+
       this.institutionList = data;
-     
+
     }).catch((error) => {
 
     });
-    
+
   }
 
-  getDataBasedOnMultiple2(){
+  getDataBasedOnMultiple2() {
     this.service.get('/rest/university/research').then((data) => {
-     
+
       this.institutionList = data;
-     
+
     }).catch((error) => {
 
     });
-    
+
   }
 
-  roundOff10(value){
+  roundOff10(value) {
 
-    return Math.round(value*10);
+    return Math.round(value * 10);
   }
-  roundOff100(value){
+  roundOff100(value) {
 
-    return Math.round(value*100);
+    return Math.round(value * 100);
   }
 
 

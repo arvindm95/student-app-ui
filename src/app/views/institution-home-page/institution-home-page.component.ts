@@ -53,6 +53,12 @@ export class InstitutionHomepage implements OnInit {
 
   ];
 
+  educationSearch: boolean = false;
+  entSearch: boolean = false;
+  rSearch: boolean = false;
+  infraSearch: boolean = false;
+
+
   questionsMock: any = [
     {
       'questionNo': 1,
@@ -138,8 +144,12 @@ export class InstitutionHomepage implements OnInit {
     /*  if(document.getElementById('checkboxOne')['value'] == "checked"){
       this.router.navigate(['/app/students-list',true,false,false,false]);
      } */
-      this.router.navigate(['/app/students-list'])
-    }, 5000);
+     // this.router.navigate(['/app/students-list'])
+
+     console.log(this.educationSearch,this.entSearch,this.rSearch,this.infraSearch, this.locationTags);
+     
+     this.router.navigate(['app/students-list',this.educationSearch,this.entSearch,this.rSearch,this.infraSearch, JSON.stringify(this.locationTags)]);
+    }, 1000);
 
   }
 

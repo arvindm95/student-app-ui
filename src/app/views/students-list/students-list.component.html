@@ -44,7 +44,7 @@
                   
                   {{institution?.university}}
                 </td>
-                <td>{{institution?.code}}</td>
+                <td>{{institution?.univcode}}</td>
                 <td>{{institution?.location}}</td>
                 <td>{{i+1}}</td>
                 <!--  <td>
@@ -71,15 +71,15 @@
           </div>
           <div class="progress-container" *ngIf="selectedInstitution">
               <div class="progress-card" >
-                  <okr-progress-bar-circle [setValue]="roundOff10(selectedInstitution?.stratio)"></okr-progress-bar-circle>
+                  <okr-progress-bar-circle [setValue]="selectedInstitution?.education"></okr-progress-bar-circle>
                   <h5 class="text">Education</h5>
               </div>
               <div class="progress-card" >
-                  <okr-progress-bar-circle [setValue]="roundOff100(selectedInstitution?.placementRatio)"></okr-progress-bar-circle>
+                  <okr-progress-bar-circle [setValue]="selectedInstitution?.entrepreneurship"></okr-progress-bar-circle>
                   <h5 class="text">Entrepreneurship</h5>
               </div>
               <div class="progress-card" >
-                  <okr-progress-bar-circle [setValue]="roundOff10(selectedInstitution?.phdratio)"></okr-progress-bar-circle>
+                  <okr-progress-bar-circle [setValue]="selectedInstitution?.research"></okr-progress-bar-circle>
                   <h5 class="text">Research</h5>
               </div>
               <div class="progress-card" >

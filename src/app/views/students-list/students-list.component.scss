@@ -67,6 +67,8 @@
     .left-section{
         flex: 1;
         transition: 250ms ease-in;
+        max-height: calc(100vh - 160px);
+        overflow: auto;
     }
 
     .right-section{
