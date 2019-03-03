@@ -4,7 +4,7 @@ import { Injectable, Component } from '@angular/core';
 @Injectable()
 export class HttpService {
 
-    apiUrl = 'http://54.175.1.35:8080'
+    apiUrl = 'http://172.17.105.58:8080'
 
     constructor(private http: HttpClient) { }
 
